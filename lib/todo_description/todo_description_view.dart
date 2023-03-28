@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tod_list_managmant/constapp/text_style_app.dart';
 import 'package:tod_list_managmant/constapp/words_app.dart';
 
-@RoutePage<String>()
+// @RoutePage<String>()
 class TodoDescriptionView extends HookWidget {
   const TodoDescriptionView({Key? key}) : super(key: key);
 

@@ -45,18 +45,18 @@ packages:
     dependency: "direct main"
     description:
       name: auto_route
-      sha256: "7faca1e83d05794deec4e160976c06345da3eeaca7b0e78e39edd657c1b86335"
+      sha256: "12047baeca0e01df93165ef33275b32119d72699ab9a49dc64c20e78f586f96d"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0+1"
+    version: "5.0.4"
   auto_route_generator:
     dependency: "direct dev"
     description:
       name: auto_route_generator
-      sha256: a3f11c3b1e6e884d1592924f3b7212855f1c7c8791c12d3b41b87ab81fb9d3b8
+      sha256: de5bfbc02ae4eebb339dd90d325749ae7536e903f6513ef72b88954072d72b0e
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0"
+    version: "5.0.3"
   boolean_selector:
     dependency: transitive
     description:
