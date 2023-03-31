@@ -84,7 +84,7 @@ dependencies:
   shimmer: ^2.0.0
   tuple: ^2.0.1
   faker: ^2.1.0
-  cached_network_image: ^3.2.3
+  # cached_network_image: ^3.2.3
 
   flutter_displaymode: ^0.5.0
 
