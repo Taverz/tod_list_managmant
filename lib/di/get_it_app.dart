@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:tod_list_managmant/app/locator.dart';
 
 
 extension TestAppMOdule on GetIt {
@@ -18,9 +19,9 @@ class AppModelImplementation extends AppModel {
   int _counter = 0;
 
   AppModelImplementation() {
-    var ter = GetIt.I.get<AppModelImplementation>();
+    // var ter =  locator.get<AppModelImplementation>();
     /// lets pretend we have to do some async initialization
-    Future.delayed(Duration(seconds: 2)).then((_) => ter.setCount = 23 );
+    // Future.delayed(Duration(seconds: 2)).then((_) => ter.setCount = 23 );
   }
 
   @override

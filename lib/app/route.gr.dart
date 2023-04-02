@@ -1,149 +1,98 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
+part of 'route.dart';
 
-import '../login_page/login_page.dart' as _i2;
-import '../profile/profile_page.dart' as _i5;
-import '../splash_preloader_page/splash_preloader_page.dart' as _i1;
-import '../todo_description/todo_description_view.dart' as _i4;
-import '../todo_list/todo_viewmodel.dart' as _i3;
-
-class AppRouter extends _i6.RootStackRouter {
-  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+abstract class _$AppRouter extends RootStackRouter {
+  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
-    SplashPreloaderRouteView.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+  final Map<String, PageFactory> pagesMap = {
+    TodoList.name: (routeData) {
+      return AutoRoutePage<String>(
         routeData: routeData,
-        child: const _i1.SplashPreloaderPageView(),
+        child: const TodoView(),
       );
     },
-    LoginRouteView.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+    LoginPage.name: (routeData) {
+      return AutoRoutePage<String>(
         routeData: routeData,
-        child: const _i2.LoginPageView(),
+        child: const LoginPageView(),
       );
     },
-    TodoView.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+    SplashPreloader.name: (routeData) {
+      return AutoRoutePage<String>(
         routeData: routeData,
-        child: const _i3.TodoView(),
+        child: const SplashPreloaderPageView(),
       );
     },
-    TodoDescriptionView.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
+    TodoDescription.name: (routeData) {
+      return AutoRoutePage<String>(
         routeData: routeData,
-        child: const _i4.TodoDescriptionView(),
-      );
-    },
-    ProfileRouteView.name: (routeData) {
-      return _i6.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i5.ProfilePageView(),
+        child: const TodoDescriptionView(),
       );
     },
   };
-
-  @override
-  List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(
-          SplashPreloaderRouteView.name,
-          path: '/',
-        ),
-        _i6.RouteConfig(
-          LoginRouteView.name,
-          path: '/login-page-view',
-        ),
-        _i6.RouteConfig(
-          TodoView.name,
-          path: '/todo-view',
-          children: [
-            _i6.RouteConfig(
-              TodoDescriptionView.name,
-              path: 'todo-description-view',
-              parent: TodoView.name,
-            ),
-            _i6.RouteConfig(
-              ProfileRouteView.name,
-              path: 'profile-page-view',
-              parent: TodoView.name,
-            ),
-          ],
-        ),
-      ];
 }
 
 /// generated route for
-/// [_i1.SplashPreloaderPageView]
-class SplashPreloaderRouteView extends _i6.PageRouteInfo<void> {
-  const SplashPreloaderRouteView()
+/// [TodoView]
+class TodoList extends PageRouteInfo<void> {
+  const TodoList({List<PageRouteInfo>? children})
       : super(
-          SplashPreloaderRouteView.name,
-          path: '/',
-        );
-
-  static const String name = 'SplashPreloaderRouteView';
-}
-
-/// generated route for
-/// [_i2.LoginPageView]
-class LoginRouteView extends _i6.PageRouteInfo<void> {
-  const LoginRouteView()
-      : super(
-          LoginRouteView.name,
-          path: '/login-page-view',
-        );
-
-  static const String name = 'LoginRouteView';
-}
-
-/// generated route for
-/// [_i3.TodoView]
-class TodoView extends _i6.PageRouteInfo<void> {
-  const TodoView({List<_i6.PageRouteInfo>? children})
-      : super(
-          TodoView.name,
-          path: '/todo-view',
+          TodoList.name,
           initialChildren: children,
         );
 
-  static const String name = 'TodoView';
+  static const String name = 'TodoList';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.TodoDescriptionView]
-class TodoDescriptionView extends _i6.PageRouteInfo<void> {
-  const TodoDescriptionView()
+/// [LoginPageView]
+class LoginPage extends PageRouteInfo<void> {
+  const LoginPage({List<PageRouteInfo>? children})
       : super(
-          TodoDescriptionView.name,
-          path: 'todo-description-view',
+          LoginPage.name,
+          initialChildren: children,
         );
 
-  static const String name = 'TodoDescriptionView';
+  static const String name = 'LoginPage';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.ProfilePageView]
-class ProfileRouteView extends _i6.PageRouteInfo<void> {
-  const ProfileRouteView()
+/// [SplashPreloaderPageView]
+class SplashPreloader extends PageRouteInfo<void> {
+  const SplashPreloader({List<PageRouteInfo>? children})
       : super(
-          ProfileRouteView.name,
-          path: 'profile-page-view',
+          SplashPreloader.name,
+          initialChildren: children,
         );
 
-  static const String name = 'ProfileRouteView';
+  static const String name = 'SplashPreloader';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TodoDescriptionView]
+class TodoDescription extends PageRouteInfo<void> {
+  const TodoDescription({List<PageRouteInfo>? children})
+      : super(
+          TodoDescription.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoDescription';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

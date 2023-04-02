@@ -5,7 +5,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:tod_list_managmant/constapp/text_style_app.dart';
 import 'package:tod_list_managmant/constapp/words_app.dart';
 
-// @RoutePage<String>()
+
+@RoutePage<String>(name:"TodoDescription")
 class TodoDescriptionView extends HookWidget {
   const TodoDescriptionView({Key? key}) : super(key: key);
 
@@ -42,7 +43,7 @@ class TodoDescriptionView extends HookWidget {
       children: [
         Row(
           children: [
-            Text("Title todo"),
+            const Text("Title todo"),
             const Spacer(),
             Container(
               decoration: const BoxDecoration(
@@ -54,8 +55,8 @@ class TodoDescriptionView extends HookWidget {
             ),
           ],
         ),
-        Text("Description"),
-        Text("Status"),
+        const Text("Description"),
+        const Text("Status"),
       ],
     );
   }
