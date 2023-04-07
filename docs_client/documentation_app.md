@@ -1,8 +1,8 @@
 ## App client documentation  
 
-Pattern design in this project:
-Composite - for file, for team
-Mediator - for notification
+Pattern design in this project:   
+Composite - for file, for team.  
+Mediator - for notification   
 
 Stucture app/folder:   
 app.  
