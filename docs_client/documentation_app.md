@@ -1,12 +1,33 @@
 ## App client documentation  
 
-Stucture app/folder:
+Pattern design in this project:
+Composite - for file, for team
+Mediator - for notification
 
-Api http request
+Stucture app/folder:   
+app.  
+-const.  
+-localize.  
+-noconst.  
+ui.  
+-widget.  
+-screen.   
+bi (bussiness logic)   
+-di.  
+-view_model.  
+--(bloc).  
+--stacked   
 
-Fuctionals:
 
-Pages list:
+Api http request. 
+ 
+Fuctionals:  
+- add team  
+- add todo. 
+- change status todo. 
+- delete all complite todo. 
+
+Pages list:  
 
 
 
