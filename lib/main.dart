@@ -1,11 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'package:tod_list_managmant/di/get_it_app.dart';
-import 'package:tod_list_managmant/todo_list/todo_viewmodel.dart';
-import 'package:auto_route/auto_route.dart';
 
 import 'app/locator.dart';
 import 'app/route.dart';
@@ -59,17 +53,21 @@ class MyApp extends StatelessWidget {
     //   routeInformationParser: _appRouter.defaultRouteParser(),
     // );
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: _appRouter.config(
-        initialRoutes: [
-            // LoginPage(),
-            // TodoList(),
-            // TodoDescription(),
-            SplashPreloader(),
-          ]
-        )
-    );
+        // scaffoldMessengerKey: ,
+        // key: ,
+        // navigatorKey: Get.key,
+          debugShowCheckedModeBanner: false,
+          routerConfig: _appRouter.config(
+          initialRoutes: [
+              // LoginPage(),
+              // TodoList(),
+              // TodoDescription(),
+              SplashPreloader(),
+            ]
+          )
+      );
     // return MaterialApp(
+    //       navigatorKey: Get.key,
     //       builder: ExtendedNavigator.builder<r.AppRouter>(
     //         router: r.AppRouter(),
     //         builder: (context, extendedNav) => Theme(
