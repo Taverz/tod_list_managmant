@@ -23,7 +23,7 @@ abstract class _$AppRouter extends RootStackRouter {
     LoginPage.name: (routeData) {
       return AutoRoutePage<String>(
         routeData: routeData,
-        child: const LoginPageView(),
+        child:  LoginPageView(),
       );
     },
     SplashPreloader.name: (routeData) {

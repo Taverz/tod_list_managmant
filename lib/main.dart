@@ -41,43 +41,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp.router(
-    //   debugShowCheckedModeBanner: false,
-    //   routerDelegate: _appRouter.delegate
-    //(initialRoutes: [
-    //     // LoginPage(),
-    //     // TodoList(),
-    //     // TodoDescription(),
-    //      SplashPreloader(),
-    //   ]),
-    //   routeInformationParser: _appRouter.defaultRouteParser(),
-    // );
     return MaterialApp.router(
-        // scaffoldMessengerKey: ,
-        // key: ,
-        // navigatorKey: Get.key,
           debugShowCheckedModeBanner: false,
           routerConfig: _appRouter.config(
           initialRoutes: [
-              // LoginPage(),
-              // TodoList(),
-              // TodoDescription(),
               SplashPreloader(),
             ]
           )
       );
-    // return MaterialApp(
-    //       navigatorKey: Get.key,
-    //       builder: ExtendedNavigator.builder<r.AppRouter>(
-    //         router: r.AppRouter(),
-    //         builder: (context, extendedNav) => Theme(
-    //             data: ThemeData(),
-    //             child: extendedNav!,
-    //           ),
-    //         initialRoute: r.SplashPreloader.name ,
-    //         navigatorKey: locator<NavigationService>().navigatorKey,
-    //       ),
-    //     );
   }
 }
 

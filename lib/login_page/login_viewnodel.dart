@@ -7,12 +7,7 @@ class LoginViewModel extends BaseViewModel {
 
   
   bool? confirmWriteData({required String password, required String login}){
-    if(password != "" || password.length < 3){
-      return false;
-    }
-    if(login != "" || !login.contains("@")){
-      return false;
-    }
+    //TODO: Api request autorized
     return true;
   }
 }

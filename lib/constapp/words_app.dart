@@ -7,5 +7,10 @@ class WordsApp {
   static const String registration = "Регистрация";
   static const String status_todo = "Статус задачи";
   static const String date_time_todo = "Время выполнения задачи";
+
+  static const String login = "Login";
+  static const String password = "Password";
+  static const String noLogin = "Это не email";
+  static const String noPassword = "Это не пароль";
   
 }
