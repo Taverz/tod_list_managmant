@@ -1,5 +1,7 @@
 # tod_list_managmant
 
+Tod list managmant - Приложение для менеджента команды и удобного управление командой и прогресса.
+
 The architectural solution that is being built:  
 - low coherence of the code (makes it easier to make changes);  
 - separation of code responsibilities;  
