@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:stacked_services/stacked_services.dart';
 import 'package:tod_list_managmant/app/route.dart';
 
-import '../service/navigation_service.dart';
+// import '../service/navigation_service.dart';
 
 extension GetItInjectableX on _i1.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -27,9 +27,9 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<NavigationServiceWW>(() => NavigationServiceWW());
+    // gh.lazySingleton<NavigationServiceWW>(() => NavigationServiceWW());
     gh.lazySingleton<NavigationService>(() => NavigationService()); 
-    gh.lazySingleton<AppRouter>(() => AppRouter());
+    // gh.lazySingleton<AppRouter>(() => AppRouter());
     return this;
   }
 }

@@ -3,6 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus
+  firebase_core
+  rive_common
+  sentry_flutter
   sqlite3_flutter_libs
 )
 
