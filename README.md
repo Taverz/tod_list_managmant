@@ -2,7 +2,8 @@
 
 `
 Todo list managmant - Приложение для менеджента команды и удобного управление командой и прогресса.
-`
+`   
+[Design Figma](https://www.figma.com/file/rNmWRvep6J15rDyvgH7tS6/TODO?type=design&node-id=0%3A1&mode=design&t=Ius8LZowabtI2XXg-1)   
 
 План разработки:
 - [X] Создание основы: Навигация, Менеджер состояния, начальный дизайн
