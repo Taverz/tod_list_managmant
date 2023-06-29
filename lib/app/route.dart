@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../login_page/login_page.dart';
 import '../splash_preloader_page/splash_preloader_page.dart';
 import '../todo_description/todo_description_view.dart';
-import '../todo_list/todo_view.dart';
+// import '../todo_list/todo_view.dart';
 import '../todo_list/todo_viewmodel.dart';
 
 part 'route.gr.dart';

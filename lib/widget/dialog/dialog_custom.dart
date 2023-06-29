@@ -99,6 +99,7 @@ class _BasicDialogContent extends StatelessWidget {
   }
 
   Color _getStatusColor(BasicDialogStatus customDatais) {
+    // ignore: unnecessary_type_check
     if (customDatais is BasicDialogStatus)
       switch (customDatais) {
         case BasicDialogStatus.error:

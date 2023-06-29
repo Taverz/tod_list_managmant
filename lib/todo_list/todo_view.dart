@@ -1,5 +1,5 @@
 
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:stacked/stacked.dart';
 
 

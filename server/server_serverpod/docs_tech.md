@@ -1,6 +1,20 @@
 ## Создание и запуск проекта
-
+dart .\bin\main.dart
 ## Минимальное количество действий для запуска
+
+
+
+
+## FIX   
+
+name tables-serverpod
+
+type .\generated\tables-serverpod.pgsql | docker compose run -T postgres env PGPASSWORD="aHtZSlAzws1EGhhGyAA_O-M83BS8-74u" psql -h postgres -U postgres -d todolist
+
+change to  tables   
+
+type .\generated\tables.pgsql | docker compose run -T postgres env PGPASSWORD="aHtZSlAzws1EGhhGyAA_O-M83BS8-74u" psql -h postgres -U postgres -d todolist
+
 
 ### Windows powershell
 

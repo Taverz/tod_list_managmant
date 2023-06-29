@@ -8,21 +8,18 @@ import '../constapp/colorsapp.dart';
 import '../constapp/icond.dart';
 import '../constapp/words_app.dart';
 
-@RoutePage<String>(name: "LoginPage") 
+@RoutePage<String>(name: "LoginPage")
 class LoginPageView extends HookWidget {
   LoginPageView({Key? key}) : super(key: key);
 
   final _fromKey = GlobalKey<FormState>();
-  final RegExp emailValid = 
-    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  final RegExp passwordValid = 
-    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]");
+  final RegExp emailValid =
+      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  final RegExp passwordValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9]");
   static const int minimuLenghtSimbvol = 5;
   static const double sizeIcon = 80;
   static const double circularBorder = 8;
   static const double marginWidget = 10;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,31 +43,45 @@ class LoginPageView extends HookWidget {
         viewModelBuilder: () => LoginViewModel(),
         builder: (context, model, childWidget) {
           return Container(
-            constraints:const BoxConstraints(
-              minHeight: 50,  minWidth:150, maxWidth: 600, maxHeight: 600,
+            constraints: const BoxConstraints(
+              minHeight: 50,
+              minWidth: 150,
+              maxWidth: 600,
+              maxHeight: 600,
             ),
             padding: const EdgeInsets.all(20),
             child: Form(
               key: _fromKey,
               child: Column(
                 children: [
-                  const ImageIcon(IconsApp.logoBig, size: sizeIcon,),
-                  Container(
-                    margin: const EdgeInsets.all(marginWidget),
-                    child: _textField(
-                        textEditingController: _controllerLogin, name: WordsApp.login, validator: emailValid ,noValideMessage: WordsApp.noLogin,),
+                  const ImageIcon(
+                    IconsApp.logoBig,
+                    size: sizeIcon,
                   ),
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(
-                        textEditingController: _controllerPassword, name: WordsApp.password, validator:passwordValid, noValideMessage: WordsApp.noPassword,),
+                      textEditingController: _controllerLogin,
+                      name: WordsApp.login,
+                      validator: emailValid,
+                      noValideMessage: WordsApp.noLogin,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(marginWidget),
+                    child: _textField(
+                      textEditingController: _controllerPassword,
+                      name: WordsApp.password,
+                      validator: passwordValid,
+                      noValideMessage: WordsApp.noPassword,
+                    ),
                   ),
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _buttonConfirm(
                       onTap: () {
-                        if(_fromKey.currentState!= null)
-                        if(!_fromKey.currentState!.validate()){
+                        if (_fromKey.currentState !=
+                            null) if (!_fromKey.currentState!.validate()) {
                           return;
                         }
                         bool? result = model.confirmWriteData(
@@ -103,50 +114,55 @@ class LoginPageView extends HookWidget {
           name,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
         ),
-      
-           TextFormField(
-            controller: textEditingController,
-            validator: (value) {
-              if(value == null){
+        TextFormField(
+          controller: textEditingController,
+          validator: (value) {
+            if (value == null) {
+              return noValideMessage;
+            }
+            final bool vaild = validator.hasMatch(value);
+            if (vaild) {
+              if (value.length < minimuLenghtSimbvol) {
                 return noValideMessage;
               }
-              final bool vaild = validator.hasMatch(value);
-              if(vaild){
-                if(value.length < minimuLenghtSimbvol){
-                  return noValideMessage;
-                }
-                return null;
-              }
-              
-            },
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-                borderSide: BorderSide(color: AppColors.surfaceColor),
-              ),
+              return null;
+            }
+            return null;
+          },
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
+              borderSide: BorderSide(color: AppColors.surfaceColor),
             ),
           ),
+        ),
       ],
     );
   }
 
   Widget _buttonConfirm({required Function() onTap}) {
     return Container(
-           constraints:const BoxConstraints(
-              minHeight: 40,  minWidth:150, maxWidth: 200, maxHeight: 70,),
+      constraints: const BoxConstraints(
+        minHeight: 40,
+        minWidth: 150,
+        maxWidth: 200,
+        maxHeight: 70,
+      ),
       child: InkWell(
-          onTap: () => onTap(),
-          child: Container(
-            //  constraints:const BoxConstraints(
-            //     minHeight: 50,  minWidth:50, maxWidth: 100, maxHeight: 150,
-            //   ),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-              color: AppColors.secondaryColor,
-            ),
-            child:const Center(child: Text(WordsApp.authorization, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18))),
+        onTap: () => onTap(),
+        child: Container(
+          //  constraints:const BoxConstraints(
+          //     minHeight: 50,  minWidth:50, maxWidth: 100, maxHeight: 150,
+          //   ),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
+            color: AppColors.secondaryColor,
           ),
+          child: const Center(
+              child: Text(WordsApp.authorization,
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18))),
         ),
+      ),
     );
   }
 }

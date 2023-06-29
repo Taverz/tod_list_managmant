@@ -1,16 +1,17 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/locator.dart';
 import 'app/route.dart';
-import 'app/route.dart' as r;
+// import 'app/route.dart' as r;
 import 'service/setup_snackbar.dart';
 import 'widget/dialog/dialog_custom.dart';
-import 'widget/dialog/dialogrequest.dart';
+// import 'widget/dialog/dialogrequest.dart';
 
 void main() async {
-  
   await _initializeApp();
 
   //  EasyLocalization(
@@ -20,15 +21,15 @@ void main() async {
   //     assetLoader: const CodegenLoader(),
   //     child: TemplateApp(),
   //   ),
+  
+  // await _sentry(const MyApp());
   runApp(const MyApp());
 }
 
 Future<void> _initializeApp() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   binding.deferFirstFrame();
-  _initializeGetIt();
-
-  setupLocator();
+  await _initializeGetIt();
   setupDialogUi();
   setupSnackbarUiWW();
   await setupSnackBarUI(locator);
@@ -42,43 +43,102 @@ Future<void> _initializeApp() async {
   binding.allowFirstFrame();
 }
 
-void _initializeGetIt() {
-  setupLocator();
+///Crash analitics
+Future<void> _sentry(Widget childW) async {
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://62bf1fca9f7748b68d836bd29c1d72ec:a9953c31b6814d8288c936caaec8cbf0@help.<project-name>.io/3';
+      options.tracesSampleRate = 1.0;
+      // options.reportPackages = false;
+      // options.addInAppInclude(
+      //     'ServiceBook-dev-${packageInfoW.buildNumber + "+" + packageInfoW.version}');
+      // options.considerInAppFramesByDefault = false;
+      options.attachThreads = true;
+      options.enableWindowMetricBreadcrumbs = true;
+      // options.platformChecker = PlatformChecker
+      // options.release = packageInfoW.packageName +
+      //     " " +
+      //     packageInfoW.buildNumber +
+      //     packageInfoW.version;
+      // options.addIntegration(LoggingIntegration());
+      // We can enable Sentry debug logging during development. This is likely
+      // going to log too much for your app, but can be useful when figuring out
+      // configuration issues, e.g. finding out why your events are not uploaded.
+      options.debug = true;
+    },
+    // (options) => options.dsn = 'https://62bf1fca9f7748b68d836bd29c1d72ec:a9953c31b6814d8288c936caaec8cbf0@help.service-book.io/3',
+    appRunner: () => runApp(
+      DefaultAssetBundle(
+        bundle: SentryAssetBundle(enableStructuredDataTracing: true),
+        child: childW,
+      ),
+    ),
+  );
 }
-void setupDialogUi(){
+
+/// @pragma('vm:entry-point') - from background worked push
+@pragma('vm:entry-point')
+void _initPushService() {
+  if (Platform.isAndroid) {
+    /// В случае если это Android  без GMS, или какой-нибудь другой Huawei, то выкенет ошибку и запустит другой сервис пушей
+    try {
+      //TODO: google push
+    } catch (e) {
+      //TODO: huawei push
+    }
+  } else if (Platform.isIOS) {
+    try {
+      //TODO: google push
+    } catch (e) {}
+  }
+}
+
+Future<void> _initializeGetIt() async {
+  await setupLocator();
+}
+
+void setupDialogUi() {
   final dialogService = locator<DialogService>();
 
-	final builders = {
-		DialogType.basic: (BuildContext context, DialogRequest request, MyCallbackFuncResponseDialog  completer)
-    =>
-		BasicDialog(request: request, completer: completer),
-	};  
+  final builders = {
+    DialogType.basic: (BuildContext context, DialogRequest request,
+            MyCallbackFuncResponseDialog completer) =>
+        BasicDialog(request: request, completer: completer),
+  };
 
-	dialogService.registerCustomDialogBuilders(builders);
+  dialogService.registerCustomDialogBuilders(builders);
 }
-void setupSnackbarUiWW(){}
-void setupBottomSheetUi(){}
 
+void setupSnackbarUiWW() {}
+void setupBottomSheetUi() {}
 
 final _appRouter = locator<AppRouter>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: _appRouter.config(
-          initialRoutes: [
-              SplashPreloader(),
-            ]
-          )
-      );
+        debugShowCheckedModeBanner: false,
+        // localizationsDelegates: [
+        //   ...AppLocalizations.localizationsDelegates,
+        //   LocaleNamesLocalizationsDelegate()
+        // ],
+        // supportedLocales: AppLocalizations.supportedLocales,
+        // locale: Locale('ru'),
+        // findSystemLocale().toString().substring(0, 2) == "ru"
+        //     ? Locale('ru')
+        //     : Locale('en'), //App_Options.of(context).locale,
+        // localeListResolutionCallback: (locales, supportedLocales) {
+        //   return basicLocaleListResolution(locales, supportedLocales);
+        // },
+        routerConfig: _appRouter.config(initialRoutes: [
+          SplashPreloader(),
+        ]));
   }
 }
-
 
 //TODO: logging the state of the page, after routing, whether the state changes or whether the page remains active
 //TODO: error handling

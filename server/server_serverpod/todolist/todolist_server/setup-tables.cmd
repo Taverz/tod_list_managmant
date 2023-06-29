@@ -15,7 +15,7 @@ goto :LOOP
 
 :PORT_FOUND
 echo Postgres is ready
-type .\generated\tables-serverpod.pgsql | docker compose run -T postgres env PGPASSWORD="aHtZSlAzws1EGhhGyAA_O-M83BS8-74u" psql -h postgres -U postgres -d todolist
+type .\generated\tables.pgsql | docker compose run -T postgres env PGPASSWORD="aHtZSlAzws1EGhhGyAA_O-M83BS8-74u" psql -h postgres -U postgres -d todolist
 echo Stopping docker
 docker compose stop
 
