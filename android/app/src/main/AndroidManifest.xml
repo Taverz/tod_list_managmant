@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tod_list_managmant">
+    package="com.taverz.tod_list_managmant">
    <application
         android:label="tod_list_managmant"
         android:name="${applicationName}"

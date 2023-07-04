@@ -3,7 +3,7 @@
 import 'package:stacked/stacked_annotations.dart';
 
 // ignore: unused_import
-import '../splash_preloader_page/splash_preloader_page.dart';
+import '../screen/splash_preloader_page/splash_preloader_page.dart';
 
 // @StackedApp(
 //   routes: [

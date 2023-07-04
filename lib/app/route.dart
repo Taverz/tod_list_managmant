@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../login_page/login_page.dart';
-import '../splash_preloader_page/splash_preloader_page.dart';
-import '../todo_description/todo_description_view.dart';
+import '../UI/screen/login_page/login_page.dart';
+import '../UI/screen/splash_preloader_page/splash_preloader_page.dart';
+import '../UI/screen/todo_description/todo_description_view.dart';
 // import '../todo_list/todo_view.dart';
-import '../todo_list/todo_viewmodel.dart';
+import '../UI/screen/todo_list/todo_viewmodel.dart';
 
 part 'route.gr.dart';
 

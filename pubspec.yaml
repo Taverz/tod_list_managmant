@@ -155,6 +155,7 @@ dependencies:
   # latlong2: ^0.8.0
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1
+  path_provider: ^2.0.15
   ### NoSQL
   hive: ^2.2.3  # - ANDROID / IOS / MACOS / WINDOWS / LINUX / WEB 
   ### Wraps platform-specific persistent storage for simple data

@@ -3,7 +3,7 @@
 import 'package:agconnect_auth/agconnect_auth.dart';
 import 'package:stacked/stacked.dart';
 
-import '../other/logs/printe_log.dart';
+import '../../../other/logs/printe_log.dart';
 
 class LoginViewModel extends BaseViewModel {
   // final _bottomSheetService = locator<BottomSheetService>();

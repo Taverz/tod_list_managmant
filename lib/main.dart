@@ -8,7 +8,7 @@ import 'app/locator.dart';
 import 'app/route.dart';
 // import 'app/route.dart' as r;
 import 'service/setup_snackbar.dart';
-import 'widget/dialog/dialog_custom.dart';
+import 'UI/widget/dialog/dialog_custom.dart';
 // import 'widget/dialog/dialogrequest.dart';
 
 void main() async {

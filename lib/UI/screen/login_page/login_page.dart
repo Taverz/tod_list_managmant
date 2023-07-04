@@ -2,11 +2,11 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
-import 'package:tod_list_managmant/login_page/login_viewnodel.dart';
+import 'package:tod_list_managmant/UI/screen/login_page/login_viewnodel.dart';
 
-import '../constapp/colorsapp.dart';
-import '../constapp/icond.dart';
-import '../constapp/words_app.dart';
+import '../../../constapp/colorsapp.dart';
+import '../../../constapp/icond.dart';
+import '../../../constapp/words_app.dart';
 
 @RoutePage<String>(name: "LoginPage")
 class LoginPageView extends HookWidget {
