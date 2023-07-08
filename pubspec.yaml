@@ -208,7 +208,7 @@ dev_dependencies:
   # dcdg: ^4.0.0
 
   # mock_web_server: ^4.1.1
-  build_runner: ^2.3.3
+  build_runner: ^2.4.6
   # auto_route_generator:
   auto_route_generator: ^6.0.3
   injectable_generator: ^2.1.5

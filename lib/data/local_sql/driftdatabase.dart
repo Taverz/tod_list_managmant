@@ -2,16 +2,16 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tod_list_managmant/data/local_sql/dao/dao_company.dart';
 import 'package:tod_list_managmant/data/local_sql/dao/dao_todo.dart';
-import 'package:tod_list_managmant/data/local_sql/dao/dao_user.dart';
+import 'package:tod_list_managmant/data/local_sql/dao/daouser.dart';
 import 'package:tod_list_managmant/data/local_sql/table/company.dart';
 import 'package:tod_list_managmant/data/local_sql/table/todo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
+import 'package:tod_list_managmant/data/local_sql/table/user.dart';
 
-part 'drift_database.g.dart';
+part 'driftdatabase.g.dart';
 
 @DriftDatabase(
   tables: [

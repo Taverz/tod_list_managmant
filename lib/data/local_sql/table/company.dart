@@ -2,9 +2,9 @@
 
 import 'package:drift/drift.dart';
 
-part 'company.g.dart';
+// part 'company.g.dart';
 
-@DataClassName('Companyname')
+@DataClassName('Companyobj')
 class Company extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();

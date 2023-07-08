@@ -2,9 +2,9 @@
 
 import 'package:drift/drift.dart';
 
-part 'todo.g.dart';
+// part 'todo.g.dart';
 
-@DataClassName('Todoname')
+@DataClassName('TodoObj')
 class Todo extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();
