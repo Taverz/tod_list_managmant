@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'app/locator.dart';
-import 'app/route.dart';
-import 'service/setup_snackbar.dart';
-import 'UI/widget/dialog/dialog_custom.dart';
+import 'app/UI/widget/dialog/dialog_custom.dart';
+import 'app/core/locator.dart';
+import 'app/core/route.dart';
+import 'app/service/setup_snackbar.dart';
+
+// import 'app/locator.dart';
+// import 'app/route.dart';
+// import 'service/setup_snackbar.dart';
+// import 'UI/widget/dialog/dialog_custom.dart';
+
 // import 'widget/dialog/dialogrequest.dart';
 
 void main() async {
@@ -28,10 +34,10 @@ void main() async {
 @pragma('vm:entry-point')
 Future<void> _initializeApp() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
+  binding.deferFirstFrame();
   try {
     _initPushService();
   } catch (e) {}
-  binding.deferFirstFrame();
   await _initializeGetIt();
   setupDialogUi();
   setupSnackbarUiWW();
