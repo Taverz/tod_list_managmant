@@ -6,7 +6,8 @@ typedef MyCallbackFuncResponseDialog = Function(DialogResponse);
 class BasicDialog extends StatelessWidget {
   final DialogRequest request;
   final MyCallbackFuncResponseDialog completer;
-  const BasicDialog({Key? key, required this.request, required this.completer})
+  final BasicDialogStatus status;
+  const BasicDialog({Key? key, required this.request,  required this.status, required this.completer})
       : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class BasicDialog extends StatelessWidget {
 /// The type of dialog to show
 enum DialogType { basic }
 
-enum BasicDialogStatus { success, error, warning }
+enum BasicDialogStatus { success, error, warning, loading }
 
 const Color kcRedColor = Color.fromARGB(255, 200, 63, 53);
 const Color kcOrangeColor = Color.fromARGB(255, 208, 125, 0);

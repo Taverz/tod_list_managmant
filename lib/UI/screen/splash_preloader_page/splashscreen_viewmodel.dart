@@ -14,11 +14,13 @@ import '../../../app/route.dart';
 
 class SplashScreenViewModel extends BaseViewModel {
   final _navigationService = GetIt.instance.get<AppRouter>();
-  preload() async {
-    await Future.delayed(Duration(seconds: 2));
+  Future<void> preload() async {
+    await Future.delayed(const Duration(seconds: 3));
     // Timer _timer = Timer(Duration(seconds: 1), (){
       _navigationService
-      .push(LoginPage());
+      // .push(LoginPage());
+      .replace( LoginPage())  ;
+      // .replaceNamed('/loginpage') ;    
       // _timer!.cancel();
       // .navigateTo("/login");
       // .navigateToView (LoginPageView());

@@ -6,7 +6,7 @@ class GoogleFirebasePush {
   static init() async {
     await Firebase.initializeApp();
     await FirebaseMessaging.instance.requestPermission();
-    String? tokenn = await FirebaseMessaging.instance.getToken();
+    // String? tokenn = await FirebaseMessaging.instance.getToken();
   }
 
   static googleFirebasePushBack() {

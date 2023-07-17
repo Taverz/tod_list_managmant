@@ -25,11 +25,13 @@ class LoginPageView extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _content(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _content(),
+            ],
+          ),
         ),
       ),
     );
@@ -79,19 +81,14 @@ class LoginPageView extends HookWidget {
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _buttonConfirm(
-                      onTap: () {
+                      onTap: () async{
                         if (_fromKey.currentState !=
                             null) if (!_fromKey.currentState!.validate()) {
                           return;
                         }
-                        bool? result = model.confirmWriteData(
+                        await model.loginConfirm(
                             password: _controllerPassword.text,
-                            login: _controllerLogin.text);
-                        if (result == null || result == false) {
-                          //TODO: errores
-                        } else {
-                          //TODO: AutoRoute
-                        }
+                            login: _controllerLogin.text,);
                       },
                     ),
                   ),
@@ -151,9 +148,6 @@ class LoginPageView extends HookWidget {
       child: InkWell(
         onTap: () => onTap(),
         child: Container(
-          //  constraints:const BoxConstraints(
-          //     minHeight: 50,  minWidth:50, maxWidth: 100, maxHeight: 150,
-          //   ),
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
             color: AppColors.secondaryColor,

@@ -6,7 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 
 import 'app/locator.dart';
 import 'app/route.dart';
-// import 'app/route.dart' as r;
 import 'service/setup_snackbar.dart';
 import 'UI/widget/dialog/dialog_custom.dart';
 // import 'widget/dialog/dialogrequest.dart';
@@ -21,13 +20,17 @@ void main() async {
   //     assetLoader: const CodegenLoader(),
   //     child: TemplateApp(),
   //   ),
-  
+
   // await _sentry(const MyApp());
   runApp(const MyApp());
 }
 
+@pragma('vm:entry-point')
 Future<void> _initializeApp() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
+  try {
+    _initPushService();
+  } catch (e) {}
   binding.deferFirstFrame();
   await _initializeGetIt();
   setupDialogUi();
@@ -104,7 +107,11 @@ void setupDialogUi() {
   final builders = {
     DialogType.basic: (BuildContext context, DialogRequest request,
             MyCallbackFuncResponseDialog completer) =>
-        BasicDialog(request: request, completer: completer),
+        BasicDialog(
+          request: request,
+          completer: completer,
+          status: BasicDialogStatus.loading,
+        ),
   };
 
   dialogService.registerCustomDialogBuilders(builders);
@@ -121,22 +128,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        // localizationsDelegates: [
-        //   ...AppLocalizations.localizationsDelegates,
-        //   LocaleNamesLocalizationsDelegate()
-        // ],
-        // supportedLocales: AppLocalizations.supportedLocales,
-        // locale: Locale('ru'),
-        // findSystemLocale().toString().substring(0, 2) == "ru"
-        //     ? Locale('ru')
-        //     : Locale('en'), //App_Options.of(context).locale,
-        // localeListResolutionCallback: (locales, supportedLocales) {
-        //   return basicLocaleListResolution(locales, supportedLocales);
-        // },
-        routerConfig: _appRouter.config(initialRoutes: [
-          SplashPreloader(),
-        ]));
+      debugShowCheckedModeBanner: false,
+      // localizationsDelegates: [
+      //   ...AppLocalizations.localizationsDelegates,
+      //   LocaleNamesLocalizationsDelegate()
+      // ],
+      // supportedLocales: AppLocalizations.supportedLocales,
+      // locale: Locale('ru'),
+      // findSystemLocale().toString().substring(0, 2) == "ru"
+      //     ? Locale('ru')
+      //     : Locale('en'), //App_Options.of(context).locale,
+      // localeListResolutionCallback: (locales, supportedLocales) {
+      //   return basicLocaleListResolution(locales, supportedLocales);
+      // },
+      routerConfig: _appRouter.config(
+        initialRoutes: [
+          const SplashPreloader(),
+        ],
+      ),
+    );
   }
 }
 

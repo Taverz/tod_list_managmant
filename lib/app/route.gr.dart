@@ -14,6 +14,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    TodoList.name: (routeData) {
+      return AutoRoutePage<String>(
+        routeData: routeData,
+        child: const TodoView(),
+      );
+    },
     LoginPage.name: (routeData) {
       final args =
           routeData.argsAs<LoginPageArgs>(orElse: () => const LoginPageArgs());
@@ -28,19 +34,39 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashPreloaderPageView(),
       );
     },
+    ProfilePage.name: (routeData) {
+      return AutoRoutePage<String>(
+        routeData: routeData,
+        child: const ProfilePageView(),
+      );
+    },
     TodoDescription.name: (routeData) {
       return AutoRoutePage<String>(
         routeData: routeData,
         child: const TodoDescriptionView(),
       );
     },
-    TodoList.name: (routeData) {
+    OrganizationList.name: (routeData) {
       return AutoRoutePage<String>(
         routeData: routeData,
-        child: const TodoView(),
+        child: const OrganizationListScreen(),
       );
     },
   };
+}
+
+/// generated route for
+/// [TodoView]
+class TodoList extends PageRouteInfo<void> {
+  const TodoList({List<PageRouteInfo>? children})
+      : super(
+          TodoList.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoList';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -86,6 +112,20 @@ class SplashPreloader extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProfilePageView]
+class ProfilePage extends PageRouteInfo<void> {
+  const ProfilePage({List<PageRouteInfo>? children})
+      : super(
+          ProfilePage.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfilePage';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [TodoDescriptionView]
 class TodoDescription extends PageRouteInfo<void> {
   const TodoDescription({List<PageRouteInfo>? children})
@@ -100,15 +140,15 @@ class TodoDescription extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TodoView]
-class TodoList extends PageRouteInfo<void> {
-  const TodoList({List<PageRouteInfo>? children})
+/// [OrganizationListScreen]
+class OrganizationList extends PageRouteInfo<void> {
+  const OrganizationList({List<PageRouteInfo>? children})
       : super(
-          TodoList.name,
+          OrganizationList.name,
           initialChildren: children,
         );
 
-  static const String name = 'TodoList';
+  static const String name = 'OrganizationList';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
