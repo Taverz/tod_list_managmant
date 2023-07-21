@@ -11,6 +11,11 @@ class Company extends Table {
   TextColumn get content => text().nullable()();
   // IntColumn get categoryId => integer().references(TodoCategories, #id)();
 
+  //TODO:
+  // String id_company;
+  // List<String>? list_user;
+  // String name;
+
   TextColumn get generatedText => text().nullable().generatedAs(
       title + const Constant(' (') + content + const Constant(')'))();
 }
