@@ -7,19 +7,26 @@ class BasicDialog extends StatelessWidget {
   final DialogRequest request;
   final MyCallbackFuncResponseDialog completer;
   final BasicDialogStatus status;
-  const BasicDialog({Key? key, required this.request,  required this.status, required this.completer})
+  final String? message;
+  const BasicDialog(
+      {Key? key,
+      required this.request,
+      required this.status,
+      this.message,
+      required this.completer})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
         backgroundColor: Colors.transparent,
-        child: _BasicDialogContent(request: request, completer: completer));
+        child: _BasicDialogContent(
+            request: request, status: status, completer: completer, message: message,));
   }
 }
 
 /// The type of dialog to show
-enum DialogType { basic }
+enum DialogType { basic, loading, errore, warning, success }
 
 enum BasicDialogStatus { success, error, warning, loading }
 
@@ -32,10 +39,13 @@ class _BasicDialogContent extends StatelessWidget {
   const _BasicDialogContent({
     Key? key,
     required this.request,
+    required this.status,
+    required this.message,
     required this.completer,
   }) : super(key: key);
-
+  final BasicDialogStatus status;
   final DialogRequest request;
+  final String? message;
   final Function(DialogResponse dialogResponse) completer;
 
   @override
@@ -45,9 +55,9 @@ class _BasicDialogContent extends StatelessWidget {
       alignment: Alignment.topCenter,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(
-              // horizontal: screenWidthPercentage(context, percentage: 0.04),
-              ),
+          // margin:  EdgeInsets.symmetric(
+          //     // horizontal: screenWidthPercentage(context, percentage: 0.04),
+          //     ),
           padding: const EdgeInsets.only(
             top: 32,
             left: 16,
@@ -72,6 +82,17 @@ class _BasicDialogContent extends StatelessWidget {
               //   align: TextAlign.center,
               // ),
               // verticalSpaceMedium,
+              Icon(
+                _getStatusIcon(status),
+                color: _getStatusColor(status),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              _getStatusText(status, message),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -82,9 +103,8 @@ class _BasicDialogContent extends StatelessWidget {
                   //     child: Container()
                   //   ),
                   TextButton(
-                      onPressed: () =>
-                          completer(DialogResponse(confirmed: true)),
-                      child: Container(),
+                    onPressed: () => completer(DialogResponse(confirmed: true)),
+                    child: Container(),
                     // child: BoxText.body(
                     //   request.mainButtonTitle ?? '',
                     //   color: kcPrimaryColor,
@@ -97,6 +117,28 @@ class _BasicDialogContent extends StatelessWidget {
         )
       ],
     );
+  }
+
+  final TextStyle textStyle = const TextStyle( fontSize: 18, fontWeight: FontWeight.w600);
+
+  Widget _getStatusText(BasicDialogStatus customDatais, String? message, ) {
+    // ignore: unnecessary_type_check
+    if (customDatais is BasicDialogStatus)
+      switch (customDatais) {
+        case BasicDialogStatus.error:
+          return Text(message??"Errore", style: textStyle,);
+        case BasicDialogStatus.warning:
+          return Text(message??"Warning", style: textStyle,);
+        case BasicDialogStatus.success:
+          return Text(message??"Success", style: textStyle,);
+        case BasicDialogStatus.loading:
+          return Text(message??"Loading", style: textStyle,);
+        default:
+          return Text(message??"Loading", style: textStyle,);
+      }
+    else {
+      return Text(message??"Loading", style: textStyle,);
+    }
   }
 
   Color _getStatusColor(BasicDialogStatus customDatais) {

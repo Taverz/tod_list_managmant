@@ -2,8 +2,10 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../constapp/constant_app.dart';
+import 'organization_list_viewmodel.dart';
 
 @RoutePage<String>(name: "OrganizationList")
 class OrganizationListScreen extends HookWidget {
@@ -12,42 +14,65 @@ class OrganizationListScreen extends HookWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
         onPressed: () {
           //TODO: add organization
         },
       ),
-      body: Column(
+      body: SafeArea(
+        child: Column(
+          children: [
+            _appBar(
+              titlePage: WordsApp.organizations,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: _contentList(null),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _appBar({required String titlePage}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _appBar(
-            titlePage: "Организации",
+          const SizedBox(width: 30),
+          Text(
+            titlePage,
+            style: const TextStyle(
+              fontSize: 28,
+            ),
           ),
-          Expanded(
-            child: _contentList(null),
+          ViewModelBuilder<OrganizationListViewModel>.reactive(
+            viewModelBuilder: () => OrganizationListViewModel(),
+            builder: (context, OrganizationListViewModel model, childWidget) {
+              return IconButton(
+                onPressed: () {
+                  // model.erroreRegistration(messageErrore: "Message11223");
+                  // model.warningManyRequestRegistration();
+                },
+                icon: const Icon(Icons.person_rounded),
+              );
+            },
           ),
         ],
       ),
     );
   }
 
-  Widget _appBar({required String titlePage}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const SizedBox(width: 30),
-        Text(titlePage),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.person_rounded),
-        ),
-      ],
-    );
-  }
-
   Widget _contentList(dynamic data) {
     if (data == null) {
-      return const Center(
+      return Center(
         child: Column(
-          children: [
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
             Icon(
               Icons.hourglass_empty,
               size: 40.0,
@@ -56,7 +81,7 @@ class OrganizationListScreen extends HookWidget {
               height: 20,
             ),
             Text(
-              "Страница пуста",
+              WordsApp.emptyPage,
               style: TextStyleAppW.errorePage,
             ),
           ],

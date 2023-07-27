@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/UI/widget/dialog/dialog_custom.dart';
@@ -9,6 +10,9 @@ import 'app/core/locator.dart';
 import 'app/core/route.dart';
 import 'app/data/repository/repository_simple.dart';
 import 'app/service/setup_snackbar.dart';
+
+// import 'app/core/route.gr.dart' as auto_router;
+import 'app/core/route.dart' as auto_router;
 
 // import 'app/locator.dart';
 // import 'app/route.dart';
@@ -119,6 +123,27 @@ void setupDialogUi() {
           completer: completer,
           status: BasicDialogStatus.loading,
         ),
+    DialogType.loading: (BuildContext context, DialogRequest request,
+            MyCallbackFuncResponseDialog completer) =>
+        BasicDialog(
+          request: request,
+          completer: completer,
+          status: BasicDialogStatus.loading,
+        ),
+    DialogType.errore: (BuildContext context, DialogRequest request,
+            MyCallbackFuncResponseDialog completer) =>
+        BasicDialog(
+          request: request,
+          completer: completer,
+          status: BasicDialogStatus.error,
+        ),
+    DialogType.warning: (BuildContext context, DialogRequest request,
+            MyCallbackFuncResponseDialog completer) =>
+        BasicDialog(
+          request: request,
+          completer: completer,
+          status: BasicDialogStatus.warning,
+        ),
   };
 
   dialogService.registerCustomDialogBuilders(builders);
@@ -134,6 +159,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       // localizationsDelegates: [
@@ -154,6 +180,20 @@ class MyApp extends StatelessWidget {
         ],
       ),
     );
+
+    // return MaterialApp(
+    //   builder:  ExtendedNavigator.builder<AppRouter>(
+    //         router: AppRouter(),
+    //         builder: (context,Widget? extendedNav) => Theme(
+    //             data: ThemeData(),
+    //             child: extendedNav??SizedBox(),
+    //           ),
+    //         initialRoute: SplashPreloader.name,
+    //         navigatorKey: locator<NavigationService>().navigatorKey,
+    //       ),
+    // );
+
+
   }
 }
 

@@ -9,6 +9,7 @@ import '../../../constapp/colorsapp.dart';
 import '../../../constapp/icond.dart';
 import '../../../constapp/words_app.dart';
 import 'registration_viewmodel.dart';
+
 @RoutePage<String>(name: "RegistrationPage")
 class RegistrationPageView extends HookWidget {
   RegistrationPageView({Key? key}) : super(key: key);
@@ -36,11 +37,27 @@ class RegistrationPageView extends HookWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              _title(),
               _content(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _title() {
+    return Column(
+      children: const [
+        ImageIcon(
+          IconsApp.logoBig,
+          size: sizeIcon,
+        ),
+        Text(
+          WordsApp.login,
+           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)
+        ),
+      ],
     );
   }
 
@@ -60,18 +77,15 @@ class RegistrationPageView extends HookWidget {
               key: _fromKey,
               child: Column(
                 children: [
-                  const ImageIcon(
-                    IconsApp.logoBig,
-                    size: sizeIcon,
-                  ),
-
-                  !(model.statePage == StateRegistration.LoginWriteFromCodeReq) ? SizedBox():
-                  _loginFromReqCode(model),
-                  !(model.statePage == StateRegistration.CodeWriteConfirm) ? SizedBox():
-                  _codeWirteConfirm(model),
-                  !(model.statePage == StateRegistration.RegistrationField) ? SizedBox():
-                  _registrationField(model),
-
+                  !(model.statePage == StateRegistration.LoginWriteFromCodeReq)
+                      ? SizedBox()
+                      : _loginFromReqCode(model),
+                  !(model.statePage == StateRegistration.CodeWriteConfirm)
+                      ? SizedBox()
+                      : _codeWirteConfirm(model),
+                  !(model.statePage == StateRegistration.RegistrationField)
+                      ? SizedBox()
+                      : _registrationField(model),
                   _loginPage(model),
                 ],
               ),
@@ -87,13 +101,12 @@ class RegistrationPageView extends HookWidget {
   Widget _loginFromReqCode(RegistrationViewModel model) {
     return Column(
       children: [
-
         /// Login
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerLogin,
-            name: WordsApp.login,
+            name: WordsApp.email,
             validator: emailValid,
             noValideMessage: WordsApp.noLogin,
           ),
@@ -118,14 +131,14 @@ class RegistrationPageView extends HookWidget {
     );
   }
 
-  Widget _loginPage(RegistrationViewModel model){
+  Widget _loginPage(RegistrationViewModel model) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         model.navigateLogin();
       },
       child: Container(
         margin: const EdgeInsets.all(15),
-        child: Text("Login"),
+        child: Text(WordsApp.login),
       ),
     );
   }
@@ -138,21 +151,24 @@ class RegistrationPageView extends HookWidget {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerCode,
-            name: WordsApp.password,
+            name: WordsApp.code,
             validator: passwordValid,
             noValideMessage: WordsApp.noPassword,
+            
           ),
         ),
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _buttonConfirm(
-            titleButton:WordsApp.confirm,
+            titleButton: WordsApp.confirm,
             onTap: () async {
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
                 return;
               }
-              model.writeCode( _controllerCode.text,);
+              model.writeCode(
+                _controllerCode.text,
+              );
             },
           ),
         ),
@@ -163,7 +179,17 @@ class RegistrationPageView extends HookWidget {
   Widget _registrationField(RegistrationViewModel model) {
     return Column(
       children: [
-         /// Name
+        /// Login
+        Container(
+          margin: const EdgeInsets.all(marginWidget),
+          child: _textField(
+            textEditingController: _controllerLogin,
+            name: WordsApp.email,
+            validator: emailValid,
+            noValideMessage: WordsApp.noLogin,
+          ),
+        ),
+        /// Name
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
@@ -173,18 +199,6 @@ class RegistrationPageView extends HookWidget {
             noValideMessage: WordsApp.noLogin,
           ),
         ),
-
-        /// Login
-        Container(
-          margin: const EdgeInsets.all(marginWidget),
-          child: _textField(
-            textEditingController: _controllerLogin,
-            name: WordsApp.login,
-            validator: emailValid,
-            noValideMessage: WordsApp.noLogin,
-          ),
-        ),
-
         /// Password
         Container(
           margin: const EdgeInsets.all(marginWidget),
@@ -193,12 +207,13 @@ class RegistrationPageView extends HookWidget {
             name: WordsApp.password,
             validator: passwordValid,
             noValideMessage: WordsApp.noPassword,
+            visibleContentField: false,
           ),
         ),
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _buttonConfirm(
-            titleButton: "Запросить код",
+            titleButton: WordsApp.authorization,
             onTap: () async {
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
@@ -221,15 +236,17 @@ class RegistrationPageView extends HookWidget {
     required String name,
     required RegExp validator,
     required String noValideMessage,
+     bool visibleContentField = true,
   }) {
     return Column(
       children: [
         Text(
           name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         ),
         TextFormField(
           controller: textEditingController,
+          obscureText: visibleContentField,
           validator: (value) {
             if (value == null) {
               return noValideMessage;
@@ -272,7 +289,8 @@ class RegistrationPageView extends HookWidget {
           ),
           child: Center(
               child: Text(titleButton,
-                  style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18))),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 18))),
         ),
       ),
     );
