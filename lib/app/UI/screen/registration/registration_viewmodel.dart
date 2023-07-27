@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 import '../../../core/route.dart';
 import '../../../service/huawei_auth.dart';
+import '../../widget/dialog/dialog_custom.dart';
 
 enum StateRegistration {
   LoginWriteFromCodeReq,
@@ -28,8 +29,7 @@ class RegistrationViewModel extends BaseViewModel {
 
 
 
-  Future<void> registrationRequestCode(
-      { required String email}) async {
+  Future<void> registrationRequestCode({required String email}) async {
         _loading();
     final VerifyCodeResult? userResult =
         await AuthHuaweiService().requestCodeConfirmEmail(login: email,);
@@ -64,20 +64,38 @@ class RegistrationViewModel extends BaseViewModel {
   }
 
   void _loading() {
-    // _dialogService.showDialog();
+    _dialogService.showCustomDialog(
+      variant: DialogType.loading, // Which builder you'd like to call that was assigned in the builders function above.
+      // title: 'This is a custom UI with Text as main button',
+      // description: 'Sheck out the builder in the dialog_ui_register.dart file',
+      // mainButtonTitle: 'Ok',
+    ); //.showDialog(); 
   }
   void _loadingStop() {
-    // _dialogService.showDialog();
+    _dialogService.showDialog(
+       title: "Title",
+        description: "Description",
+    );
   }
 
   /// Errore data to registration
-  void erroreRegistration() {
-    // _dialogService.showDialog();
+  void erroreRegistration({String? messageErrore}) {
+    _dialogService.showCustomDialog(
+      variant: DialogType.errore, // Which builder you'd like to call that was assigned in the builders function above.
+      title: messageErrore ?? 'Errore',
+      // description: 'Sheck out the builder in the dialog_ui_register.dart file',
+      mainButtonTitle: 'Ok',
+    ); //.showDialog(); 
   }
 
   /// Errore after many errore request
-  void warningManyRequestRegistration() {
-    // _dialogService.showDialog();
+  void warningManyRequestRegistration({String? messageWarning}) {
+    _dialogService.showCustomDialog(
+      variant: DialogType.warning, // Which builder you'd like to call that was assigned in the builders function above.
+      title: messageWarning ?? 'Warning',
+      // description: 'Sheck out the builder in the dialog_ui_register.dart file',
+      mainButtonTitle: 'Ok',
+    ); //.showDialog(); 
   }
 
   void _navigateNextPage() {
