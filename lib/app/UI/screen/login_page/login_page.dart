@@ -81,6 +81,7 @@ class LoginPageView extends HookWidget {
                       noValideMessage: WordsApp.noPassword,
                     ),
                   ),
+                  
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _buttonConfirm(
@@ -95,11 +96,24 @@ class LoginPageView extends HookWidget {
                       },
                     ),
                   ),
+
+                  _registration(model),
                 ],
               ),
             ),
           );
         });
+  }
+  Widget _registration(LoginViewModel model){
+    return InkWell(
+      onTap: (){
+        model.navigateRegistration();
+      },
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        child: Text("Registration"),
+      ),
+    );
   }
 
   Widget _textField({

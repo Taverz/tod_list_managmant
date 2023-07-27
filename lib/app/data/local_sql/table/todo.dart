@@ -7,8 +7,17 @@ import 'package:drift/drift.dart';
 @DataClassName('TodoObj')
 class Todo extends Table {
   IntColumn get id => integer().autoIncrement()();
-  TextColumn get title => text()();
-  TextColumn get content => text().nullable()();
+
+  TextColumn get id_todo => text()();
+  TextColumn get id_user_creater => text()();
+  TextColumn get id_user_executor => text().nullable()();
+
+  TextColumn get name => text()();
+  TextColumn get description => text()();
+
+  TextColumn get dateTime_create => text()();
+  TextColumn get priority_task => text()();
+
   // IntColumn get categoryId => integer().references(TodoCategories, #id)();
 
   //TODO:
@@ -25,5 +34,5 @@ class Todo extends Table {
   // PriorityTodoTask priority_task;
 
   TextColumn get generatedText => text().nullable().generatedAs(
-      title + const Constant(' (') + content + const Constant(')'))();
+      id_todo + const Constant(' (') + name +  description + const Constant(')'))();
 }

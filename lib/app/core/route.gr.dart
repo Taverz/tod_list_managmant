@@ -14,6 +14,14 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    RegistrationPage.name: (routeData) {
+      final args = routeData.argsAs<RegistrationPageArgs>(
+          orElse: () => const RegistrationPageArgs());
+      return AutoRoutePage<String>(
+        routeData: routeData,
+        child: RegistrationPageView(key: args.key),
+      );
+    },
     TodoList.name: (routeData) {
       return AutoRoutePage<String>(
         routeData: routeData,
@@ -53,6 +61,35 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [RegistrationPageView]
+class RegistrationPage extends PageRouteInfo<RegistrationPageArgs> {
+  RegistrationPage({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RegistrationPage.name,
+          args: RegistrationPageArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'RegistrationPage';
+
+  static const PageInfo<RegistrationPageArgs> page =
+      PageInfo<RegistrationPageArgs>(name);
+}
+
+class RegistrationPageArgs {
+  const RegistrationPageArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RegistrationPageArgs{key: $key}';
+  }
 }
 
 /// generated route for

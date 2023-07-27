@@ -9,7 +9,6 @@ import '../../../constapp/colorsapp.dart';
 import '../../../constapp/icond.dart';
 import '../../../constapp/words_app.dart';
 import 'registration_viewmodel.dart';
-
 @RoutePage<String>(name: "RegistrationPage")
 class RegistrationPageView extends HookWidget {
   RegistrationPageView({Key? key}) : super(key: key);
@@ -72,6 +71,8 @@ class RegistrationPageView extends HookWidget {
                   _codeWirteConfirm(model),
                   !(model.statePage == StateRegistration.RegistrationField) ? SizedBox():
                   _registrationField(model),
+
+                  _loginPage(model),
                 ],
               ),
             ),
@@ -114,6 +115,18 @@ class RegistrationPageView extends HookWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _loginPage(RegistrationViewModel model){
+    return InkWell(
+      onTap: (){
+        model.navigateLogin();
+      },
+      child: Container(
+        margin: const EdgeInsets.all(15),
+        child: Text("Login"),
+      ),
     );
   }
 

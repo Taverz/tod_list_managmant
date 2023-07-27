@@ -18,7 +18,7 @@ class LoginViewModel extends BaseViewModel {
     if (userResult == null) {
       erroreLogin();
     } else {
-      navigateNextPage();
+      _navigateNextPage();
     }
   }
 
@@ -32,7 +32,11 @@ class LoginViewModel extends BaseViewModel {
     _dialogService.showDialog();
   }
 
-  navigateNextPage() {
+  _navigateNextPage() {
     _navigationService.navigate(LoginPage());
+  }
+
+  navigateRegistration() {
+    _navigationService.navigate(RegistrationPage());
   }
 }
