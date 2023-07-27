@@ -33,6 +33,7 @@ class RegistrationViewModel extends BaseViewModel {
         _loading();
     final VerifyCodeResult? userResult =
         await AuthHuaweiService().requestCodeConfirmEmail(login: email,);
+    //TODO: user save
     //TODO: change status dialog
     //TODO: delayed and close dialog
     if (userResult == null) {
@@ -59,6 +60,7 @@ class RegistrationViewModel extends BaseViewModel {
 
   void _changeState(StateRegistration state){
     _statePage = state;
+    notifyListeners();
   }
 
   void _loading() {
@@ -75,11 +77,11 @@ class RegistrationViewModel extends BaseViewModel {
 
   /// Errore after many errore request
   void warningManyRequestRegistration() {
-    _dialogService.showDialog();
+    // _dialogService.showDialog();
   }
 
   void _navigateNextPage() {
-    _navigationService.navigate(LoginPage());
+    _navigationService.navigate(const OrganizationList());
   }
 
   void navigateLogin() {

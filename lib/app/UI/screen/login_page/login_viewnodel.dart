@@ -33,7 +33,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   _navigateNextPage() {
-    _navigationService.navigate(LoginPage());
+    _navigationService.navigate(const OrganizationList());
   }
 
   navigateRegistration() {

@@ -1,1 +1,1 @@
-remote
+remote function (service)

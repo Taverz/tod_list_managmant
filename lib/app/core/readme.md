@@ -1,1 +1,1 @@
-locale
+locale function (service)

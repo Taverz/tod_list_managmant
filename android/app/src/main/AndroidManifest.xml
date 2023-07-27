@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taverz.tod_list_managmant">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="tod_list_managmant"
         android:name="${applicationName}"

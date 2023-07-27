@@ -10,7 +10,7 @@ class AuthHuaweiService extends AuthService<AGCUser> {
     try{
       AGCAuthCredential credential =
           EmailAuthProvider.credentialWithPassword(login, password);
-      SignInResult resultLogin = await AGCAuth.instance.signIn(credential);
+      SignInResult? resultLogin = await AGCAuth.instance.signIn(credential);
       AGCUser? user = resultLogin.user;
       return user;
     } on AGCAuthException catch (error) {

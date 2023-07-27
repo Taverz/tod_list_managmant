@@ -30,11 +30,27 @@ class LoginPageView extends HookWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              _title(),
               _content(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _title() {
+    return Column(
+      children: const [
+        ImageIcon(
+          IconsApp.logoBig,
+          size: sizeIcon,
+        ),
+        Text(
+          WordsApp.login,
+           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
+        ),
+      ],
     );
   }
 
@@ -57,16 +73,12 @@ class LoginPageView extends HookWidget {
               key: _fromKey,
               child: Column(
                 children: [
-                  const ImageIcon(
-                    IconsApp.logoBig,
-                    size: sizeIcon,
-                  ),
                   /// Login
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(
                       textEditingController: _controllerLogin,
-                      name: WordsApp.login,
+                      name: WordsApp.email,
                       validator: emailValid,
                       noValideMessage: WordsApp.noLogin,
                     ),
@@ -79,6 +91,7 @@ class LoginPageView extends HookWidget {
                       name: WordsApp.password,
                       validator: passwordValid,
                       noValideMessage: WordsApp.noPassword,
+                      visibleContentField: false,
                     ),
                   ),
                   
@@ -92,7 +105,8 @@ class LoginPageView extends HookWidget {
                         }
                         await model.loginConfirm(
                             password: _controllerPassword.text,
-                            login: _controllerLogin.text,);
+                            login: _controllerLogin.text,
+                        );
                       },
                     ),
                   ),
@@ -111,7 +125,7 @@ class LoginPageView extends HookWidget {
       },
       child: Container(
         margin: const EdgeInsets.all(15),
-        child: Text("Registration"),
+        child: Text(WordsApp.registration),
       ),
     );
   }
@@ -121,15 +135,17 @@ class LoginPageView extends HookWidget {
     required String name,
     required RegExp validator,
     required String noValideMessage,
+    bool visibleContentField = true,
   }) {
     return Column(
       children: [
         Text(
           name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
         TextFormField(
           controller: textEditingController,
+          obscureText: !visibleContentField,
           validator: (value) {
             if (value == null) {
               return noValideMessage;
