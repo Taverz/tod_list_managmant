@@ -61,6 +61,7 @@ class LoginPageView extends HookWidget {
                     IconsApp.logoBig,
                     size: sizeIcon,
                   ),
+                  /// Login
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(
@@ -70,6 +71,7 @@ class LoginPageView extends HookWidget {
                       noValideMessage: WordsApp.noLogin,
                     ),
                   ),
+                  /// Password
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(

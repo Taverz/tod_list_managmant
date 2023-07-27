@@ -20,13 +20,13 @@ class AuthHuaweiService extends AuthService<AGCUser> {
   }
   /// 1 Нужно сначало запросить код подтвержждение, только потом начать регистрацию, передав код подтверждения при регистрации
   @override
-  Future<bool> requestCodeConfirmEmail({required String login})async{
+  Future<VerifyCodeResult?> requestCodeConfirmEmail({required String login})async{
     VerifyCodeSettings settings =
         VerifyCodeSettings(VerifyCodeAction.registerLogin, sendInterval: 5);
     try {
       VerifyCodeResult? resultVerifyCode =
           await EmailAuthProvider.requestVerifyCode(login, settings);
-      return resultVerifyCode != null ? true : false;
+      return resultVerifyCode;
     } on AGCAuthException catch (error) {
       printWWWW("Huawei Errore ${error.message}");
       String codeException = error.code.toString();
@@ -35,7 +35,7 @@ class AuthHuaweiService extends AuthService<AGCUser> {
   }
   /// 2 После получения токена подтверждения, зарегестрировать пользователя
   @override
-  Future<AGCUser?> registration(String email, code, password)async{
+  Future<AGCUser?> registration({required String email,required String code,required String password})async{
     EmailUser user = EmailUser(email, code, password: password);
     try {
       SignInResult resultregistrationEmail =
@@ -77,8 +77,8 @@ class AuthHuaweiService extends AuthService<AGCUser> {
 
 class AuthService<T> {
   Future<T?> login({required String login,required String password})async => null;
-  Future<bool> requestCodeConfirmEmail({required String login})async => false;
-  Future<T?> registration(String email, code, password)async => null;
+  Future<dynamic> requestCodeConfirmEmail({required String login})async => false;
+  Future<T?> registration({required String email,required String code,required String password})async => null;
   Future<T?> chechLogin()async => null;
   Future<bool> logout()async => false;
 }

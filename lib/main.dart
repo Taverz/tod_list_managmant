@@ -52,7 +52,7 @@ Future<void> _initializeApp() async {
   binding.allowFirstFrame();
 }
 
-///Crash analitics
+/// Crash analitics
 Future<void> _sentry(Widget childW) async {
   await SentryFlutter.init(
     (options) {
