@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app/UI/widget/dialog/dialog_custom.dart';
 import 'app/core/locator.dart';
 import 'app/core/route.dart';
+import 'app/data/repository/repository_simple.dart';
 import 'app/service/setup_snackbar.dart';
 
 // import 'app/locator.dart';

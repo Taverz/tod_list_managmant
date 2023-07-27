@@ -18,9 +18,9 @@ class CompanyDao extends DatabaseAccessor<FirstDatabase> with _$CompanyDaoMixin 
   Future<List<Companyobj>> limitCompany(int limit, {required int offset}) => (select(company)..limit(limit, offset: offset)).get();
 
   
-  Future insertNewCompany(Companyobj obj) => into(company).insert(obj);
-  Future deleteCompany(Companyobj obj) => delete(company).delete(obj);
+  Future<int> insertNewCompany(Companyobj obj) => into(company).insert(obj);
+  Future<int> deleteCompany(Companyobj obj) => delete(company).delete(obj);
   /// Change content and update state field
-  Future updateCompany(Companyobj obj) => update(company).replace(obj);
+  Future<bool> updateCompany(Companyobj obj) => update(company).replace(obj);
 
 }

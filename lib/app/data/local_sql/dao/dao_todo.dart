@@ -18,11 +18,16 @@ class TodosDao extends DatabaseAccessor<FirstDatabase> with _$TodosDaoMixin {
   /// From big list loaded
   Future<List<TodoObj>> limitTodos(int limit, {required int offset}) => (select(todo)..limit(limit, offset: offset)).get();
 
-  
-  Future insertNewTodo(TodoObj obj) => into(todo).insert(obj);
-  Future deleteTodo(TodoObj obj) => delete(todo).delete(obj);
+  Future<TodoObj> getOneTodo(int idTodo)  
+  {
+    final query = select(todo)..where((tbl) => tbl.id.equals(idTodo)) ;
+    return query.getSingle();
+  }
+
+  Future<int> insertNewTodo(TodoObj obj) => into(todo).insert(obj);
+  Future<int> deleteTodo(TodoObj obj) => delete(todo).delete(obj);
   /// Change content and update state field
-  Future updateTodo(TodoObj obj) => update(todo).replace(obj);
+  Future<bool> updateTodo(TodoObj obj) => update(todo).replace(obj);
 
 
 }
