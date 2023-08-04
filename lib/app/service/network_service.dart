@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable 
+@injectable
 class ConnectivityService {
   Connectivity connectivity = Connectivity();
   bool hasConnection = false;

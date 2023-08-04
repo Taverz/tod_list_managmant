@@ -9,4 +9,4 @@ final locator = GetIt.instance;
 
 @injectableInit
 // Future<void> setupLocator()async  => await GetItInjectableX(locator).init(); // $initGetIt(locator);
-Future<void> setupLocator()async  => $initGetIt(locator);
+Future<void> setupLocator() async => $initGetIt(locator);

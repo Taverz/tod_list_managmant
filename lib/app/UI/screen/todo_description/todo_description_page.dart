@@ -1,17 +1,26 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:stacked/stacked.dart';
+import 'package:tod_list_managmant/app/UI/screen/todo_description/todo_description_viewmodel.dart';
 
 import '../../../constapp/constant_app.dart';
 
-
-
-@RoutePage<String>(name:"TodoDescription")
-class TodoDescriptionView extends HookWidget {
+// @RoutePage<String>(name:"TodoDescription")
+class TodoDescriptionView extends StackedView<TodoDescriptionViewModel> {
+  // extends HookWidget {
   const TodoDescriptionView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  TodoDescriptionViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      TodoDescriptionViewModel();
+
+  @override
+  Widget builder(
+    BuildContext context,
+    TodoDescriptionViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: _content(),
@@ -28,8 +37,8 @@ class TodoDescriptionView extends HookWidget {
   }
 
   Widget _titlePage() {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Text(
           WordsApp.titlePage_DescriptionTodo,
           style: TextStyleAppW.titlePage,

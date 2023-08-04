@@ -1,0 +1,17 @@
+{
+    "bottom_sheets_path": "app/UI/bottom_sheets", 
+    "dialogs_path": "app/UI/dialogs", 
+    "line_length": 80,
+    "locator_name": "locator_stacked",
+    "prefer_web": false,
+    "register_mocks_function": "registerServices",
+    "services_path": "services",
+    "stacked_app_file_path": "app/core/app.dart", 
+    "test_helpers_file_path": "helpers/test_helpers.dart",
+    "test_services_path": "services",
+    "test_views_path": "viewmodels",
+    "test_widgets_path": "widget_models",
+    "v1": false,
+    "views_path": "app/UI/screen",
+    "widgets_path": "app/UI/widgets/common"
+}

@@ -1,7 +1,5 @@
-
 // import 'package:auto_route/annotations.dart';
 import 'package:stacked/stacked.dart';
-
 
 class TodoViewModel extends BaseViewModel {
   List<String> _todo = [];
@@ -9,8 +7,8 @@ class TodoViewModel extends BaseViewModel {
 
   String _dataTok = "";
 
-  void startupLogic(){
-    assert((){
+  void startupLogic() {
+    assert(() {
       print("");
       return false;
     }());
@@ -18,13 +16,11 @@ class TodoViewModel extends BaseViewModel {
 
   set setDataTok(String vallue) => _dataTok;
 
-  void addTodo(String text){
+  void addTodo(String text) {
     _todo.add(text);
     notifyListeners();
   }
-
 }
-
 
 // class HomeViewModel extends StreamViewModel {
 //   final _connectivityService = locator<ConnectivityService>();
@@ -103,10 +99,6 @@ class TodoViewModel extends BaseViewModel {
 
 // }
 
-
-
-
-
 // Scaffold(
 //             appBar: AppBar(
 //               backgroundColor: viewModel.status ? Colors.green : Colors.red,
@@ -127,6 +119,3 @@ class TodoViewModel extends BaseViewModel {
 //               ],
 //             ),
 //         )
-
-
-

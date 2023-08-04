@@ -3,13 +3,12 @@ import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
-import '../../../core/route.dart';
+// import '../../../core/route.dart';
 import '../../../service/huawei_auth.dart';
 
 class LoginViewModel extends BaseViewModel {
   final _dialogService = GetIt.instance.get<DialogService>();
-  final _navigationService = GetIt.instance.get<AppRouter>();
+  // final _navigationService = GetIt.instance.get<AppRouter>();
 
   Future<void> loginConfirm(
       {required String password, required String login}) async {
@@ -33,10 +32,10 @@ class LoginViewModel extends BaseViewModel {
   }
 
   _navigateNextPage() {
-    _navigationService.navigate(const OrganizationList());
+    // _navigationService.navigate(const OrganizationList());
   }
 
   navigateRegistration() {
-    _navigationService.navigate(RegistrationPage());
+    // _navigationService.navigate(RegistrationPage());
   }
 }

@@ -1,5 +1,3 @@
-
-
 import 'company_usecase.dart';
 import 'todo_usecase.dart';
 import 'user_usecase.dart';
@@ -11,25 +9,27 @@ class ModelAppData {
 
   ModelAppData();
 
-  addUserData(User_usecase user){
+  addUserData(User_usecase user) {
     _user = user;
   }
-  deleteUserData(){
+
+  deleteUserData() {
     _user = null;
   }
 
-  addTodoData(Todo_usecase todo){
+  addTodoData(Todo_usecase todo) {
     _todo = todo;
   }
-  deleteTodoData(){
+
+  deleteTodoData() {
     _todo = null;
   }
 
-
-  addCompanyData(Company_usecase comany){
+  addCompanyData(Company_usecase comany) {
     _company = comany;
   }
-  deleteCompanyData(){
+
+  deleteCompanyData() {
     _company = null;
   }
 }

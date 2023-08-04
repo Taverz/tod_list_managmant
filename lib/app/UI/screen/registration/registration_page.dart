@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../constapp/colorsapp.dart';
@@ -10,8 +10,9 @@ import '../../../constapp/icond.dart';
 import '../../../constapp/words_app.dart';
 import 'registration_viewmodel.dart';
 
-@RoutePage<String>(name: "RegistrationPage")
-class RegistrationPageView extends HookWidget {
+// @RoutePage<String>(name: "RegistrationPage")
+class RegistrationPageView extends StackedView<RegistrationViewModel> {
+  // extends HookWidget {
   RegistrationPageView({Key? key}) : super(key: key);
 
   final _fromKey = GlobalKey<FormState>();
@@ -30,7 +31,17 @@ class RegistrationPageView extends HookWidget {
   /// 4 Registration fields
 
   @override
-  Widget build(BuildContext context) {
+  RegistrationViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      RegistrationViewModel();
+
+  @override
+  Widget builder(
+    BuildContext context,
+    RegistrationViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -53,10 +64,8 @@ class RegistrationPageView extends HookWidget {
           IconsApp.logoBig,
           size: sizeIcon,
         ),
-        Text(
-          WordsApp.login,
-           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)
-        ),
+        Text(WordsApp.login,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
       ],
     );
   }
@@ -154,7 +163,6 @@ class RegistrationPageView extends HookWidget {
             name: WordsApp.code,
             validator: passwordValid,
             noValideMessage: WordsApp.noPassword,
-            
           ),
         ),
         Container(
@@ -189,6 +197,7 @@ class RegistrationPageView extends HookWidget {
             noValideMessage: WordsApp.noLogin,
           ),
         ),
+
         /// Name
         Container(
           margin: const EdgeInsets.all(marginWidget),
@@ -199,6 +208,7 @@ class RegistrationPageView extends HookWidget {
             noValideMessage: WordsApp.noLogin,
           ),
         ),
+
         /// Password
         Container(
           margin: const EdgeInsets.all(marginWidget),
@@ -236,7 +246,7 @@ class RegistrationPageView extends HookWidget {
     required String name,
     required RegExp validator,
     required String noValideMessage,
-     bool visibleContentField = true,
+    bool visibleContentField = true,
   }) {
     return Column(
       children: [

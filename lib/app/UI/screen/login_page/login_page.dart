@@ -1,16 +1,16 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
-
 
 import '../../../constapp/colorsapp.dart';
 import '../../../constapp/icond.dart';
 import '../../../constapp/words_app.dart';
 import 'login_viewnodel.dart';
 
-@RoutePage<String>(name: "LoginPage")
-class LoginPageView extends HookWidget {
+// @RoutePage<String>(name: "LoginPage")
+class LoginPageView extends StackedView<LoginViewModel> {
+  //extends HookWidget {
   LoginPageView({Key? key}) : super(key: key);
 
   final _fromKey = GlobalKey<FormState>();
@@ -23,7 +23,17 @@ class LoginPageView extends HookWidget {
   static const double marginWidget = 10;
 
   @override
-  Widget build(BuildContext context) {
+  LoginViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      LoginViewModel();
+
+  @override
+  Widget builder(
+    BuildContext context,
+    LoginViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,7 +58,7 @@ class LoginPageView extends HookWidget {
         ),
         Text(
           WordsApp.login,
-           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
         ),
       ],
     );
@@ -83,6 +93,7 @@ class LoginPageView extends HookWidget {
                       noValideMessage: WordsApp.noLogin,
                     ),
                   ),
+
                   /// Password
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
@@ -94,18 +105,18 @@ class LoginPageView extends HookWidget {
                       visibleContentField: false,
                     ),
                   ),
-                  
+
                   Container(
                     margin: const EdgeInsets.all(marginWidget),
                     child: _buttonConfirm(
-                      onTap: () async{
+                      onTap: () async {
                         if (_fromKey.currentState !=
                             null) if (!_fromKey.currentState!.validate()) {
                           return;
                         }
                         await model.loginConfirm(
-                            password: _controllerPassword.text,
-                            login: _controllerLogin.text,
+                          password: _controllerPassword.text,
+                          login: _controllerLogin.text,
                         );
                       },
                     ),
@@ -118,9 +129,10 @@ class LoginPageView extends HookWidget {
           );
         });
   }
-  Widget _registration(LoginViewModel model){
+
+  Widget _registration(LoginViewModel model) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         model.navigateRegistration();
       },
       child: Container(

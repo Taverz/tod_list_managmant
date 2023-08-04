@@ -4,8 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class User_usecase {
-
-  /// Random id 
+  /// Random id
   String id_user;
   List<String>? list_company;
   String login;
@@ -53,7 +52,9 @@ class User_usecase {
   factory User_usecase.fromMap(Map<String, dynamic> map) {
     return User_usecase(
       id_user: map['id_user'] as String,
-      list_company: map['list_company'] != null ? List<String>.from((map['list_company'] as List<String>)) : null,
+      list_company: map['list_company'] != null
+          ? List<String>.from((map['list_company'] as List<String>))
+          : null,
       login: map['login'] as String,
       password: map['password'] as String,
       name: map['name'] as String,
@@ -63,7 +64,8 @@ class User_usecase {
 
   String toJson() => json.encode(toMap());
 
-  factory User_usecase.fromJson(String source) => User_usecase.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User_usecase.fromJson(String source) =>
+      User_usecase.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -73,23 +75,22 @@ class User_usecase {
   @override
   bool operator ==(covariant User_usecase other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id_user == id_user &&
-      listEquals(other.list_company, list_company) &&
-      other.login == login &&
-      other.password == password &&
-      other.name == name &&
-      other.email == email;
+
+    return other.id_user == id_user &&
+        listEquals(other.list_company, list_company) &&
+        other.login == login &&
+        other.password == password &&
+        other.name == name &&
+        other.email == email;
   }
 
   @override
   int get hashCode {
     return id_user.hashCode ^
-      list_company.hashCode ^
-      login.hashCode ^
-      password.hashCode ^
-      name.hashCode ^
-      email.hashCode;
+        list_company.hashCode ^
+        login.hashCode ^
+        password.hashCode ^
+        name.hashCode ^
+        email.hashCode;
   }
 }

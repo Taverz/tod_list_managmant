@@ -35,7 +35,7 @@ class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   }
 
   @override
-  Future<bool> changeTodo(todo)async {
+  Future<bool> changeTodo(todo) async {
     return _daoTodo.updateTodo(todo);
   }
 
@@ -45,7 +45,7 @@ class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   }
 
   @override
-  Future<bool>  deleteTodo(idTodo) async{
+  Future<bool> deleteTodo(idTodo) async {
     // TODO: implement deleteTodo
     throw UnimplementedError();
   }

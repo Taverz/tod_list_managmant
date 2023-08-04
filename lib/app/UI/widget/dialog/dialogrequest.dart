@@ -63,8 +63,8 @@
 //   @override
 //   bool operator ==(covariant DialogRequestW other) {
 //     if (identical(this, other)) return true;
-  
-//     return 
+
+//     return
 //       other.title == title &&
 //       other.description == description &&
 //       other.buttonTitle == buttonTitle &&
@@ -129,8 +129,8 @@
 //   @override
 //   bool operator ==(covariant DialogResponse other) {
 //     if (identical(this, other)) return true;
-  
-//     return 
+
+//     return
 //       other.fieldOne == fieldOne &&
 //       other.fieldTwo == fieldTwo &&
 //       other.confirmed == confirmed;

@@ -1,5 +1,3 @@
-
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 abstract class NetworkInfoInterface {
@@ -7,23 +5,24 @@ abstract class NetworkInfoInterface {
 }
 
 class NetworkInfo implements NetworkInfoInterface {
-  final Connectivity connectionChecker; //= Connectivity();  
+  final Connectivity connectionChecker; //= Connectivity();
 
   NetworkInfo(this.connectionChecker);
 
-  @override 
+  @override
   Future<bool> isConnectGet() async {
     // throw UnimplementedError();
     /// Conect ==  true
-    final ConnectivityResult connect = await  connectionChecker.checkConnectivity();
+    final ConnectivityResult connect =
+        await connectionChecker.checkConnectivity();
     bool result = false;
-    if(connect ==ConnectivityResult.mobile){
+    if (connect == ConnectivityResult.mobile) {
       result = true;
-    } else if(connect ==ConnectivityResult.ethernet){
+    } else if (connect == ConnectivityResult.ethernet) {
       result = true;
-    }else if(connect ==ConnectivityResult.wifi){
+    } else if (connect == ConnectivityResult.wifi) {
       result = true;
-    }else if(connect ==ConnectivityResult.vpn){
+    } else if (connect == ConnectivityResult.vpn) {
       result = true;
     }
     return result;

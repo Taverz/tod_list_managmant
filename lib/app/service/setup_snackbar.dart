@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 // import 'package:handling_network_connectivity/utils/enums.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 enum SnackbarType { positive, negative }
 
 Future<void> setupSnackBarUI(GetIt locator) async {

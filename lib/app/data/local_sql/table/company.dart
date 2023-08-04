@@ -1,5 +1,3 @@
-
-
 import 'package:drift/drift.dart';
 
 // part 'company.g.dart';
@@ -12,7 +10,6 @@ class Company extends Table {
   // TextColumn get description => text().nullable()();
   TextColumn get list_user => text().nullable()();
   // IntColumn get categoryId => integer().references(TodoCategories, #id)();
-
 
   TextColumn get generatedText => text().nullable().generatedAs(
       name + const Constant(' (') + id_company + const Constant(')'))();

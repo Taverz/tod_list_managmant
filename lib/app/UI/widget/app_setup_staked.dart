@@ -1,4 +1,3 @@
-
 // ignore: unused_import
 import 'package:stacked/stacked_annotations.dart';
 

@@ -46,7 +46,7 @@ class ExampleEndpoint extends Endpoint {
     if (ueser == null) {
       return null;
     }
-    if ( ueser.isEmpty) {
+    if (ueser.isEmpty) {
       return null;
     }
     return ueser[0];
@@ -64,7 +64,7 @@ class ExampleEndpoint extends Endpoint {
       session,
       where: (p0) => p0.login.equals(login) & p0.password.equals(password),
     );
-    if ( ueser.isEmpty) {
+    if (ueser.isEmpty) {
       final User us = User(
           name: name,
           iduser: iduser,

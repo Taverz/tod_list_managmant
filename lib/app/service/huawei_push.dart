@@ -6,12 +6,11 @@ import 'package:huawei_push/huawei_push.dart';
 import '../other/logs/printe_log.dart';
 
 class HuaweiPush {
-
   /// @pragma('vm:entry-point') - требуется для виртульаной машины dart/Flutter.
 
   @pragma('vm:entry-point')
   void initPushHuawei() async {
-    assert((){
+    assert(() {
       Push.enableLogger();
       return true;
     }());
@@ -25,7 +24,6 @@ class HuaweiPush {
     Function(String) errore,
   ) {
     Push.getTokenStream.listen((tokenData) {
-
       token(tokenData);
     }, onError: (Object objectErrore) {
       PlatformException e = objectErrore as PlatformException;
@@ -47,7 +45,6 @@ class HuaweiPush {
   @pragma('vm:entry-point')
   void _onTokenEvent(dynamic event) {
     // String token = event.toString();
-
   }
 
   @pragma('vm:entry-point')
@@ -115,6 +112,7 @@ class HuaweiPush {
       }
     });
   }
+
   @pragma('vm:entry-point')
   void backgrounMessage(Function(String) callbackDataPush) async {
     try {
@@ -133,6 +131,7 @@ class HuaweiPush {
       printWWWW(backgroundMessageHandler);
     } catch (e) {}
   }
+
   @pragma('vm:entry-point')
   static _newPushMessageBack(Map<String, dynamic> message) {
     // print("new BACGROUND PushMessage KK " + message.toString());

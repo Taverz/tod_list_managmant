@@ -1,13 +1,25 @@
-import 'package:auto_route/auto_route.dart';
+// import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+// import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:stacked/stacked.dart';
+import 'package:tod_list_managmant/app/UI/screen/profile/profile_viewmodel.dart';
 
-@RoutePage<String>(name: "ProfilePage")
-class ProfilePageView extends HookWidget {
+// @RoutePage<String>(name: "ProfilePage")
+class ProfilePageView extends StackedView<ProfileViewModel> {
+  //extends HookWidget {
   const ProfilePageView({Key? key}) : super(key: key);
+  @override
+  ProfileViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      ProfileViewModel();
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+    BuildContext context,
+    ProfileViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: _content(),
@@ -15,8 +27,7 @@ class ProfilePageView extends HookWidget {
     );
   }
 
-  Widget _content(){
+  Widget _content() {
     return Container();
   }
-
 }

@@ -1,17 +1,28 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../constapp/constant_app.dart';
 import 'organization_list_viewmodel.dart';
 
-@RoutePage<String>(name: "OrganizationList")
-class OrganizationListScreen extends HookWidget {
+// @RoutePage<String>(name: "OrganizationList")
+class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
+  //extends HookWidget {
   const OrganizationListScreen({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  OrganizationListViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
+      OrganizationListViewModel();
+
+  @override
+  Widget builder(
+    BuildContext context,
+    OrganizationListViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),

@@ -41,7 +41,8 @@ LazyDatabase _openConnection() {
     // put the database file, called db.sqlite here, into the documents folder
     // for your app.
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(path.join(dbFolder.path, 'db_drift_2023_07_03_111.sqlite'));
+    final file =
+        File(path.join(dbFolder.path, 'db_drift_2023_07_03_111.sqlite'));
     return NativeDatabase.createInBackground(file);
   });
 }
@@ -81,8 +82,5 @@ LazyDatabase _openConnection() {
 //   //   );
 //   // }
 
-
 //   Stream<List<TodoItem>> get allItems => select(todoItems).watch();
 // }
-
-

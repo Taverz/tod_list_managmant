@@ -1,5 +1,3 @@
-
-
 import 'package:drift/drift.dart';
 
 // part 'todo.g.dart';
@@ -33,6 +31,9 @@ class Todo extends Table {
   // /// Convert to enum
   // PriorityTodoTask priority_task;
 
-  TextColumn get generatedText => text().nullable().generatedAs(
-      id_todo + const Constant(' (') + name +  description + const Constant(')'))();
+  TextColumn get generatedText => text().nullable().generatedAs(id_todo +
+      const Constant(' (') +
+      name +
+      description +
+      const Constant(')'))();
 }

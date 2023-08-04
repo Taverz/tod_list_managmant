@@ -2,17 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:stacked/stacked.dart';
+// import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/UI/widget/dialog/dialog_custom.dart';
+import 'app/core/app.router.dart';
 import 'app/core/locator.dart';
-import 'app/core/route.dart';
-import 'app/data/repository/repository_simple.dart';
+// import 'app/core/route.dart';
+// import 'app/data/repository/repository_simple.dart';
 import 'app/service/setup_snackbar.dart';
 
 // import 'app/core/route.gr.dart' as auto_router;
-import 'app/core/route.dart' as auto_router;
+// import 'app/core/route.dart' as auto_router;
 
 // import 'app/locator.dart';
 // import 'app/route.dart';
@@ -152,33 +153,41 @@ void setupDialogUi() {
 void setupSnackbarUiWW() {}
 void setupBottomSheetUi() {}
 
-final _appRouter = locator<AppRouter>();
+// final _appRouter = locator<AppRouter>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // return MaterialApp.router(
+    //   debugShowCheckedModeBanner: false,
+    //   // localizationsDelegates: [
+    //   //   ...AppLocalizations.localizationsDelegates,
+    //   //   LocaleNamesLocalizationsDelegate()
+    //   // ],
+    //   // supportedLocales: AppLocalizations.supportedLocales,
+    //   // locale: Locale('ru'),
+    //   // findSystemLocale().toString().substring(0, 2) == "ru"
+    //   //     ? Locale('ru')
+    //   //     : Locale('en'), //App_Options.of(context).locale,
+    //   // localeListResolutionCallback: (locales, supportedLocales) {
+    //   //   return basicLocaleListResolution(locales, supportedLocales);
+    //   // },
+    //   routerConfig: _appRouter.config(
+    //     initialRoutes: [
+    //       const SplashPreloader(),
+    //     ],
+    //   ),
+    // );
 
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      // localizationsDelegates: [
-      //   ...AppLocalizations.localizationsDelegates,
-      //   LocaleNamesLocalizationsDelegate()
-      // ],
-      // supportedLocales: AppLocalizations.supportedLocales,
-      // locale: Locale('ru'),
-      // findSystemLocale().toString().substring(0, 2) == "ru"
-      //     ? Locale('ru')
-      //     : Locale('en'), //App_Options.of(context).locale,
-      // localeListResolutionCallback: (locales, supportedLocales) {
-      //   return basicLocaleListResolution(locales, supportedLocales);
-      // },
-      routerConfig: _appRouter.config(
-        initialRoutes: [
-          const SplashPreloader(),
-        ],
-      ),
+    return MaterialApp(
+      initialRoute: Routes.splashPreloaderPageView,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      navigatorObservers: [
+        StackedService.routeObserver,
+      ],
     );
 
     // return MaterialApp(
@@ -192,8 +201,6 @@ class MyApp extends StatelessWidget {
     //         navigatorKey: locator<NavigationService>().navigatorKey,
     //       ),
     // );
-
-
   }
 }
 

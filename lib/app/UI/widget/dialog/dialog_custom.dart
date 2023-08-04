@@ -21,7 +21,11 @@ class BasicDialog extends StatelessWidget {
     return Dialog(
         backgroundColor: Colors.transparent,
         child: _BasicDialogContent(
-            request: request, status: status, completer: completer, message: message,));
+          request: request,
+          status: status,
+          completer: completer,
+          message: message,
+        ));
   }
 }
 
@@ -119,25 +123,47 @@ class _BasicDialogContent extends StatelessWidget {
     );
   }
 
-  final TextStyle textStyle = const TextStyle( fontSize: 18, fontWeight: FontWeight.w600);
+  final TextStyle textStyle =
+      const TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 
-  Widget _getStatusText(BasicDialogStatus customDatais, String? message, ) {
+  Widget _getStatusText(
+    BasicDialogStatus customDatais,
+    String? message,
+  ) {
     // ignore: unnecessary_type_check
     if (customDatais is BasicDialogStatus)
       switch (customDatais) {
         case BasicDialogStatus.error:
-          return Text(message??"Errore", style: textStyle,);
+          return Text(
+            message ?? "Errore",
+            style: textStyle,
+          );
         case BasicDialogStatus.warning:
-          return Text(message??"Warning", style: textStyle,);
+          return Text(
+            message ?? "Warning",
+            style: textStyle,
+          );
         case BasicDialogStatus.success:
-          return Text(message??"Success", style: textStyle,);
+          return Text(
+            message ?? "Success",
+            style: textStyle,
+          );
         case BasicDialogStatus.loading:
-          return Text(message??"Loading", style: textStyle,);
+          return Text(
+            message ?? "Loading",
+            style: textStyle,
+          );
         default:
-          return Text(message??"Loading", style: textStyle,);
+          return Text(
+            message ?? "Loading",
+            style: textStyle,
+          );
       }
     else {
-      return Text(message??"Loading", style: textStyle,);
+      return Text(
+        message ?? "Loading",
+        style: textStyle,
+      );
     }
   }
 
