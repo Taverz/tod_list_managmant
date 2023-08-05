@@ -9,7 +9,6 @@ import string
 import json
 
 class Task(Resource):
-    print("TextNLPJapan class")
 
     def post(self):
         header = "ds24"#request.headers["Authorization"]
@@ -19,25 +18,10 @@ class Task(Resource):
 
 
     def get(self):
-        result = []
-        header = ""
         json_data = request.get_json(force=True)
 
-        #TODO:
-        if  header: # if not header: 
-            return {"Messege" : "No api key!"}, 400
-        else:
-            print("\n\n\n\n DOCTOR \n\n\n\n")
-            db.disconnect_all()
+        db.disconnect_all()
+        db.connect(db='todo_list_manager',host='localhost:27017',alias='todo_list_manager')
+        print("\n\n\nn\nERROR\n\\n\n\n")
 
-            # db.disconnect(alias='user') #,username='',password='',authentication_source='admin'
-
-            db.connect(db='jp',host='localhost:27017',alias='jp')
-
-            tabWords = textNLP["tabWords"]
-            wordsN = tabWords['Japanese Words']
-            print("\n\n\nn\nERROR\n\\n\n\n")
-            print("\n\n Jappaese Words\n"+str(wordsN))
-            levelWordsJson = {}
-
-            return {"status": 'success',"data":{"tabWords":tabWords, "text":text,"id":id,"title":"tetle"} }, 201  
+        return {"status": 'success',"data":{"title":"tetle"} }, 201  

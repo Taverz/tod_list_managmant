@@ -1,8 +1,8 @@
 from flask import Flask
-from pymongo import MongoClient
-from flask_pymongo import PyMongo 
+# from pymongo import MongoClient
+# from flask_pymongo import PyMongo 
 from flask_mongoengine import MongoEngine
-from mongoengine import connect
+# from mongoengine import connect
 import socket
 
 import flask.scaffold
@@ -16,8 +16,6 @@ def create_app(config_filename):
     # app.config["DB_CLIENT"] = ""
     # app.config["COLLECTION"]= ""
     
-
-   
 
     # app.config['MONGODB_SETTINGS'] = {
     # 'db': 'project1',
@@ -75,8 +73,8 @@ if __name__ == "__main__":
 
     app.run(
     debug=True,
-    host= '192.168.0.229', #'192.168.43.45', #str(local_ip), #'192.168.0.104', #"192.168.0.104", #"192.168.0.102",  # 192.168.0.102  # 0.0.0.0
-    port=5040,
+    host= '192.168.0.230', #'192.168.43.45', #str(local_ip), #'192.168.0.104', #"192.168.0.104", #"192.168.0.102",  # 192.168.0.102  # 0.0.0.0
+    port=5047,
         threaded=True,
         processes=1
     )
