@@ -16,9 +16,9 @@ class UserDao extends DatabaseAccessor<FirstDatabase> with _$UserDaoMixin {
   Future<List<UserObj>> limitUser(int limit, {required int offset}) =>
       (select(user)..limit(limit, offset: offset)).get();
 
-  Future insertNewUser(UserObj obj) => into(user).insert(obj);
-  Future deleteUser(UserObj obj) => delete(user).delete(obj);
+  Future<int> insertNewUser(UserObj obj) => into(user).insert(obj);
+  Future<int> deleteUser(UserObj obj) => delete(user).delete(obj);
 
   /// Change content and update state field
-  Future updateUser(UserObj obj) => update(user).replace(obj);
+  Future<bool> updateUser(UserObj obj) => update(user).replace(obj);
 }

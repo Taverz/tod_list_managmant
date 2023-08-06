@@ -1,16 +1,10 @@
 // ignore_for_file: must_be_immutable
-
-// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../constapp/colorsapp.dart';
-import '../../../constapp/icond.dart';
-import '../../../constapp/words_app.dart';
+import '../../common/appconstant.dart';
 import 'registration_viewmodel.dart';
 
-// @RoutePage<String>(name: "RegistrationPage")
 class RegistrationPageView extends StackedView<RegistrationViewModel> {
   // extends HookWidget {
   RegistrationPageView({Key? key}) : super(key: key);
@@ -58,13 +52,13 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
   }
 
   Widget _title() {
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         ImageIcon(
-          IconsApp.logoBig,
+          appIconLogoBig,
           size: sizeIcon,
         ),
-        Text(WordsApp.login,
+        Text(appwordsLogin,
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
       ],
     );
@@ -115,16 +109,16 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerLogin,
-            name: WordsApp.email,
+            name: appwordsEmail,
             validator: emailValid,
-            noValideMessage: WordsApp.noLogin,
+            noValideMessage: appwordsNoLogin,
           ),
         ),
 
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _buttonConfirm(
-            titleButton: WordsApp.requestCode,
+            titleButton: appwordsRequestCode,
             onTap: () async {
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
@@ -147,7 +141,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
       },
       child: Container(
         margin: const EdgeInsets.all(15),
-        child: Text(WordsApp.login),
+        child:const Text(appwordsLogin),
       ),
     );
   }
@@ -160,15 +154,15 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerCode,
-            name: WordsApp.code,
+            name: appwordsCode,
             validator: passwordValid,
-            noValideMessage: WordsApp.noPassword,
+            noValideMessage: appwordsNoPassword,
           ),
         ),
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _buttonConfirm(
-            titleButton: WordsApp.confirm,
+            titleButton: appwordsConfirm,
             onTap: () async {
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
@@ -192,9 +186,9 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerLogin,
-            name: WordsApp.email,
+            name:appwordsEmail,
             validator: emailValid,
-            noValideMessage: WordsApp.noLogin,
+            noValideMessage: appwordsNoLogin,
           ),
         ),
 
@@ -203,9 +197,9 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerName,
-            name: WordsApp.naemField,
+            name: appwordsNaemField,
             validator: emailValid,
-            noValideMessage: WordsApp.noLogin,
+            noValideMessage: appwordsNoLogin,
           ),
         ),
 
@@ -214,16 +208,16 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           margin: const EdgeInsets.all(marginWidget),
           child: _textField(
             textEditingController: _controllerPassword,
-            name: WordsApp.password,
+            name: appwordsPassword,
             validator: passwordValid,
-            noValideMessage: WordsApp.noPassword,
+            noValideMessage: appwordsNoPassword,
             visibleContentField: false,
           ),
         ),
         Container(
           margin: const EdgeInsets.all(marginWidget),
           child: _buttonConfirm(
-            titleButton: WordsApp.authorization,
+            titleButton: appwordsAuthorization,
             onTap: () async {
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
@@ -273,7 +267,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-              borderSide: BorderSide(color: AppColors.surfaceColor),
+              borderSide: BorderSide(color: appcolorSurfaceColor),
             ),
           ),
         ),
@@ -295,7 +289,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-            color: AppColors.secondaryColor,
+            color: appcolorSecondaryColor,
           ),
           child: Center(
               child: Text(titleButton,

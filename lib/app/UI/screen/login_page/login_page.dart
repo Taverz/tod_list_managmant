@@ -1,14 +1,9 @@
-// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
+import 'package:tod_list_managmant/app/UI/common/appconstant.dart';
 
-import '../../../constapp/colorsapp.dart';
-import '../../../constapp/icond.dart';
-import '../../../constapp/words_app.dart';
 import 'login_viewnodel.dart';
 
-// @RoutePage<String>(name: "LoginPage")
 class LoginPageView extends StackedView<LoginViewModel> {
   //extends HookWidget {
   LoginPageView({Key? key}) : super(key: key);
@@ -50,14 +45,14 @@ class LoginPageView extends StackedView<LoginViewModel> {
   }
 
   Widget _title() {
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         ImageIcon(
-          IconsApp.logoBig,
+          appIconLogoBig,
           size: sizeIcon,
         ),
         Text(
-          WordsApp.login,
+          appwordsLogin,
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
         ),
       ],
@@ -65,9 +60,8 @@ class LoginPageView extends StackedView<LoginViewModel> {
   }
 
   Widget _content() {
-    final TextEditingController _controllerLogin = useTextEditingController();
-    final TextEditingController _controllerPassword =
-        useTextEditingController();
+    final TextEditingController _controllerLogin = TextEditingController();
+    final TextEditingController _controllerPassword = TextEditingController();
     return ViewModelBuilder<LoginViewModel>.reactive(
         viewModelBuilder: () => LoginViewModel(),
         builder: (context, model, childWidget) {
@@ -88,9 +82,9 @@ class LoginPageView extends StackedView<LoginViewModel> {
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(
                       textEditingController: _controllerLogin,
-                      name: WordsApp.email,
+                      name: appwordsEmail,
                       validator: emailValid,
-                      noValideMessage: WordsApp.noLogin,
+                      noValideMessage: appwordsNoLogin,
                     ),
                   ),
 
@@ -99,9 +93,9 @@ class LoginPageView extends StackedView<LoginViewModel> {
                     margin: const EdgeInsets.all(marginWidget),
                     child: _textField(
                       textEditingController: _controllerPassword,
-                      name: WordsApp.password,
+                      name: appwordsPassword,
                       validator: passwordValid,
-                      noValideMessage: WordsApp.noPassword,
+                      noValideMessage: appwordsNoPassword,
                       visibleContentField: false,
                     ),
                   ),
@@ -137,7 +131,7 @@ class LoginPageView extends StackedView<LoginViewModel> {
       },
       child: Container(
         margin: const EdgeInsets.all(15),
-        child: Text(WordsApp.registration),
+        child: const Text(appwordsRegistration),
       ),
     );
   }
@@ -174,7 +168,7 @@ class LoginPageView extends StackedView<LoginViewModel> {
           decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-              borderSide: BorderSide(color: AppColors.surfaceColor),
+              borderSide: BorderSide(color: appcolorSurfaceColor),
             ),
           ),
         ),
@@ -195,11 +189,13 @@ class LoginPageView extends StackedView<LoginViewModel> {
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(circularBorder)),
-            color: AppColors.secondaryColor,
+            color: appcolorSecondaryColor,
           ),
           child: const Center(
-              child: Text(WordsApp.authorization,
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18))),
+              child: Text(
+            appwordsAuthorization,
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          )),
         ),
       ),
     );

@@ -2,25 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-// import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:tod_list_managmant/app/core/app.locator.dart';
 
-import 'app/UI/widget/dialog/dialog_custom.dart';
+import 'app/core/app.bottomsheets.dart';
+import 'app/core/app.dialogs.dart';
 import 'app/core/app.router.dart';
-import 'app/core/locator.dart';
-// import 'app/core/route.dart';
-// import 'app/data/repository/repository_simple.dart';
-import 'app/service/setup_snackbar.dart';
 
-// import 'app/core/route.gr.dart' as auto_router;
-// import 'app/core/route.dart' as auto_router;
-
-// import 'app/locator.dart';
-// import 'app/route.dart';
-// import 'service/setup_snackbar.dart';
-// import 'UI/widget/dialog/dialog_custom.dart';
-
-// import 'widget/dialog/dialogrequest.dart';
 
 void main() async {
   await _initializeApp();
@@ -42,15 +30,11 @@ Future<void> _initializeApp() async {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   binding.deferFirstFrame();
   try {
-    _initPushService();
+    await _initPushService();
   } catch (e) {}
-  await _initializeGetIt();
+  await setupLocator();
   setupDialogUi();
-  setupSnackbarUiWW();
-  await setupSnackBarUI(locator);
   setupBottomSheetUi();
-
-  // service.registerCustomDialogBuilder(variant: Dialog.basic, builder: (context, request, completer) => Dialog(...))
 
   // await Future.wait([
   //   EasyLocalization.ensureInitialized(),
@@ -94,7 +78,7 @@ Future<void> _sentry(Widget childW) async {
 
 /// @pragma('vm:entry-point') - from background worked push
 @pragma('vm:entry-point')
-void _initPushService() {
+Future<void> _initPushService() async{
   if (Platform.isAndroid) {
     /// В случае если это Android  без GMS, или какой-нибудь другой Huawei, то выкенет ошибку и запустит другой сервис пушей
     try {
@@ -109,101 +93,40 @@ void _initPushService() {
   }
 }
 
-Future<void> _initializeGetIt() async {
-  await setupLocator();
-}
 
-void setupDialogUi() {
-  final dialogService = locator<DialogService>();
 
-  final builders = {
-    DialogType.basic: (BuildContext context, DialogRequest request,
-            MyCallbackFuncResponseDialog completer) =>
-        BasicDialog(
-          request: request,
-          completer: completer,
-          status: BasicDialogStatus.loading,
-        ),
-    DialogType.loading: (BuildContext context, DialogRequest request,
-            MyCallbackFuncResponseDialog completer) =>
-        BasicDialog(
-          request: request,
-          completer: completer,
-          status: BasicDialogStatus.loading,
-        ),
-    DialogType.errore: (BuildContext context, DialogRequest request,
-            MyCallbackFuncResponseDialog completer) =>
-        BasicDialog(
-          request: request,
-          completer: completer,
-          status: BasicDialogStatus.error,
-        ),
-    DialogType.warning: (BuildContext context, DialogRequest request,
-            MyCallbackFuncResponseDialog completer) =>
-        BasicDialog(
-          request: request,
-          completer: completer,
-          status: BasicDialogStatus.warning,
-        ),
-  };
-
-  dialogService.registerCustomDialogBuilders(builders);
-}
-
-void setupSnackbarUiWW() {}
-void setupBottomSheetUi() {}
-
-// final _appRouter = locator<AppRouter>();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp.router(
-    //   debugShowCheckedModeBanner: false,
-    //   // localizationsDelegates: [
-    //   //   ...AppLocalizations.localizationsDelegates,
-    //   //   LocaleNamesLocalizationsDelegate()
-    //   // ],
-    //   // supportedLocales: AppLocalizations.supportedLocales,
-    //   // locale: Locale('ru'),
-    //   // findSystemLocale().toString().substring(0, 2) == "ru"
-    //   //     ? Locale('ru')
-    //   //     : Locale('en'), //App_Options.of(context).locale,
-    //   // localeListResolutionCallback: (locales, supportedLocales) {
-    //   //   return basicLocaleListResolution(locales, supportedLocales);
-    //   // },
-    //   routerConfig: _appRouter.config(
-    //     initialRoutes: [
-    //       const SplashPreloader(),
-    //     ],
-    //   ),
-    // );
-
-    return MaterialApp(
+    return WidgetsApp(
+      debugShowCheckedModeBanner: false,
+      color: Colors.deepPurple,
       initialRoute: Routes.splashPreloaderPageView,
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [
         StackedService.routeObserver,
-      ],
+      ], 
     );
-
     // return MaterialApp(
-    //   builder:  ExtendedNavigator.builder<AppRouter>(
-    //         router: AppRouter(),
-    //         builder: (context,Widget? extendedNav) => Theme(
-    //             data: ThemeData(),
-    //             child: extendedNav??SizedBox(),
-    //           ),
-    //         initialRoute: SplashPreloader.name,
-    //         navigatorKey: locator<NavigationService>().navigatorKey,
-    //       ),
+    //   debugShowCheckedModeBanner: false,
+    //   theme: ThemeData(
+    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   initialRoute: Routes.splashPreloaderPageView,
+    //   onGenerateRoute: StackedRouter().onGenerateRoute,
+    //   navigatorKey: StackedService.navigatorKey,
+    //   navigatorObservers: [
+    //     StackedService.routeObserver,
+    //   ],
     // );
   }
 }
 
-//TODO: logging the state of the page, after routing, whether the state changes or whether the page remains active
-//TODO: error handling
+//TODO: logging the state of the page, after routing, 
+//  whether the state changes or whether the page remains active
 //TODO: application design details

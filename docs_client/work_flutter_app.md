@@ -8,5 +8,15 @@ flutter pub run build_runner watch
 $ stacked generate  
 
 need JSON file Path: stacked.json
+### Для обновления ios зависиомстей   
+ flutter clean  
+ rm -Rf ios/Pods  
+ rm -Rf ios/.symlinks  
+ rm -Rf ios/Flutter/Flutter.framework  
+ rm -Rf ios/Flutter/Flutter.podspec  
+
+## Возможно еще надо чистить pabspec.lock  
+
+ pod install  
 
 

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:huawei_push/huawei_push.dart';
 
-import '../other/logs/printe_log.dart';
+import '../logs/printe_log.dart';
 
 class HuaweiPush {
   /// @pragma('vm:entry-point') - требуется для виртульаной машины dart/Flutter.

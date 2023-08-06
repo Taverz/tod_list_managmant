@@ -7,13 +7,14 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:tod_list_managmant/app/UI/screen/login_page/login_page.dart';
 import 'package:tod_list_managmant/app/UI/screen/organization_list/organization_list_page.dart';
 import 'package:tod_list_managmant/app/UI/screen/profile/profile_page.dart';
+import 'package:tod_list_managmant/app/UI/screen/registration/registration_page.dart';
 import 'package:tod_list_managmant/app/UI/screen/splash_preloader_page/splash_preloader_page.dart';
 import 'package:tod_list_managmant/app/UI/screen/todo_description/todo_description_page.dart';
 
-import '../UI/bottom_sheets/alert/alert_sheet.dart';
-import '../UI/bottom_sheets/notice/notice_sheet.dart';
-import '../UI/dialogs/error/error_dialog.dart';
-import '../UI/dialogs/info_alert/info_alert_dialog.dart';
+import '../UI/widget/bottom_sheets/alert/alert_sheet.dart';
+import '../UI/widget/bottom_sheets/notice/notice_sheet.dart';
+import '../UI/widget/dialogs/error/error_dialog.dart';
+import '../UI/widget/dialogs/info_alert/info_alert_dialog.dart';
 import '../UI/screen/todo_list/todo_viewmodel.dart';
 
 // import 'package:tod_list_managmant/app/UI/bottom_sheets/alert/alert_sheet.dart';
@@ -22,6 +23,7 @@ import '../UI/screen/todo_list/todo_viewmodel.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: LoginPageView),
+    MaterialRoute(page: RegistrationPageView),
     MaterialRoute(page: SplashPreloaderPageView),
     MaterialRoute(
       page: OrganizationListScreen,

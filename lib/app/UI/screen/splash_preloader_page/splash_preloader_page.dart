@@ -1,16 +1,9 @@
-// import 'package:auto_route/annotations.dart';
-import 'package:flutter/material.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
-// import 'package:get_it/get_it.dart';
-// import 'package:get_it/get_it.dart';
-import 'package:stacked/stacked.dart';
-// import 'package:tod_list_managmant/app/route.dart';
 
-// import '../../../app/route.dart';
-import '../../../constapp/icond.dart';
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:tod_list_managmant/app/UI/common/appconstant.dart';
 import 'splashscreen_viewmodel.dart';
 
-// @RoutePage<String>(name: "SplashPreloader")
 class SplashPreloaderPageView extends StackedView<SplashScreenViewModel> {
 //  extends HookWidget {
   const SplashPreloaderPageView({Key? key}) : super(key: key);
@@ -45,7 +38,7 @@ class SplashPreloaderPageView extends StackedView<SplashScreenViewModel> {
           margin: const EdgeInsets.all(20),
           child: const Center(
             child: ImageIcon(
-              IconsApp.logoBig,
+              appIconLogoBig,
               size: 80,
             ),
           ),

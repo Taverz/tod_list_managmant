@@ -1,13 +1,9 @@
-// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../constapp/constant_app.dart';
+import '../../common/appconstant.dart';
 import 'organization_list_viewmodel.dart';
 
-// @RoutePage<String>(name: "OrganizationList")
 class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
   //extends HookWidget {
   const OrganizationListScreen({Key? key}) : super(key: key);
@@ -34,7 +30,7 @@ class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
         child: Column(
           children: [
             _appBar(
-              titlePage: WordsApp.organizations,
+              titlePage: appwordsOrganizations,
             ),
             const SizedBox(
               height: 20,
@@ -80,10 +76,10 @@ class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
 
   Widget _contentList(dynamic data) {
     if (data == null) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(
               Icons.hourglass_empty,
               size: 40.0,
@@ -92,8 +88,8 @@ class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
               height: 20,
             ),
             Text(
-              WordsApp.emptyPage,
-              style: TextStyleAppW.errorePage,
+              appwordsEmptyPage,
+              style: apptextstyleErrorePage,
             ),
           ],
         ),
@@ -112,7 +108,7 @@ class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
 
   Widget _elementList(
       {required String nameOrganozation, required String countTask}) {
-    Widget _contentWidget = Container(
+    Widget contentWidget = Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -129,11 +125,13 @@ class OrganizationListScreen extends StackedView<OrganizationListViewModel> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius:
-            const BorderRadius.all(Radius.circular(BorderWidget.mediumWidget)),
+            const BorderRadius.all(Radius.circular(appborderMediumWidget)),
         border: Border.all(
-            color: AppColors.primaryColor.withOpacity(0.5), width: 1),
+          color: appcolorPrimaryColor.withOpacity(0.5),
+          width: 1,
+        ),
       ),
-      child: _contentWidget,
+      child: contentWidget,
     );
   }
 }

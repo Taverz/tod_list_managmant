@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:tod_list_managmant/app/UI/screen/todo_description/todo_description_viewmodel.dart';
 
-import '../../../constapp/constant_app.dart';
+import '../../common/appconstant.dart';
 
 // @RoutePage<String>(name:"TodoDescription")
 class TodoDescriptionView extends StackedView<TodoDescriptionViewModel> {
@@ -40,8 +40,8 @@ class TodoDescriptionView extends StackedView<TodoDescriptionViewModel> {
     return const Row(
       children: [
         Text(
-          WordsApp.titlePage_DescriptionTodo,
-          style: TextStyleAppW.titlePage,
+          appwordsTitlePage_DescriptionTodo,
+          style: apptextstyleTitlePage,
         ),
       ],
     );

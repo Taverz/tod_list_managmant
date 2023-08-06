@@ -8,6 +8,10 @@ const double _mediumSize = 25.0;
 const double _largeSize = 50.0;
 const double _massiveSize = 120.0;
 
+const double appborderSmallWidget = 8.0;
+const double appborderMediumWidget = 12.0;
+const double appborderBigWidget = 18.0;
+
 const Widget horizontalSpaceTiny = SizedBox(width: _tinySize);
 const Widget horizontalSpaceSmall = SizedBox(width: _smallSize);
 const Widget horizontalSpaceMedium = SizedBox(width: _mediumSize);

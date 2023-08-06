@@ -7,8 +7,8 @@
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
-import '../UI/dialogs/error/error_dialog.dart';
-import '../UI/dialogs/info_alert/info_alert_dialog.dart';
+import '../UI/widget/dialogs/error/error_dialog.dart';
+import '../UI/widget/dialogs/info_alert/info_alert_dialog.dart';
 
 enum DialogType {
   infoAlert,
