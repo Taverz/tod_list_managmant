@@ -1,7 +1,7 @@
 from flask import Flask
 # from pymongo import MongoClient
 # from flask_pymongo import PyMongo 
-from flask_mongoengine import MongoEngine
+# from flask_mongoengine import MongoEngine
 # from mongoengine import connect
 import socket
 
@@ -9,34 +9,41 @@ import flask.scaffold
 flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 import flask_restful
 
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
 def create_app(config_filename):
     app = Flask(__name__)
     # app.config.from_object(config_filename)
-    app.config["MONGO_URI"] = "mongodb://localhost:27017/"
-    # app.config["DB_CLIENT"] = ""
-    # app.config["COLLECTION"]= ""
+    # app.config["MONGO_URI"] = "mongodb://localhost:27017/"
+    # # app.config["DB_CLIENT"] = ""
+    # # app.config["COLLECTION"]= ""
+    # # app.config['MONGODB_SETTINGS'] = {
+    # # 'db': 'project1',
+    # # 'username':'webapp',
+    # # 'password':'pwd123'
+    # # }
+    # #OR
+    # # app.config['MONGODB_DB'] = 'project1'
+    # # app.config['MONGODB_HOST'] = '192.168.1.35'
+    # # app.config['MONGODB_PORT'] = 12345
+    # # app.config['MONGODB_USERNAME'] = 'webapp'
+    # # app.config['MONGODB_PASSWORD'] = 'pwd123'
+    # from app import api_bp
+    # app.register_blueprint(api_bp, url_prefix='/api')
+    # # from models import db
+    # # db.init_app(app)
+    # # db = PyMongo(app)
+    
     
 
-    # app.config['MONGODB_SETTINGS'] = {
-    # 'db': 'project1',
-    # 'username':'webapp',
-    # 'password':'pwd123'
-    # }
 
-    #OR
-    # app.config['MONGODB_DB'] = 'project1'
-    # app.config['MONGODB_HOST'] = '192.168.1.35'
-    # app.config['MONGODB_PORT'] = 12345
-    # app.config['MONGODB_USERNAME'] = 'webapp'
-    # app.config['MONGODB_PASSWORD'] = 'pwd123'
-    
-    from app import api_bp
-    app.register_blueprint(api_bp, url_prefix='/api')
+    engine = create_engine('postgresql://usr:pass@localhost:5432/sqlalchemy')
+    Session = sessionmaker(bind=engine)
 
-    # from models import db
-    # db.init_app(app)
-    
-    # db = PyMongo(app)
+    Base = declarative_base()
 
     return app
 
