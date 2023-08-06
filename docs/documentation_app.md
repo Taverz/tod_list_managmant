@@ -30,6 +30,9 @@ Fuctionals:
 Pages list:  
 
 
+## Standartilaze develop process
+How write code  
+
 
 ## auto_route:  
 1. delete [.gr.dart]  OR  flutter packages pub run build_runner watch  
