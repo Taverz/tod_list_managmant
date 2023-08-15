@@ -18,7 +18,7 @@ class User_model {
     required this.password,
     required this.name,
     required this.email,
-  });
+  }) : assert(login.length > 5 && password.length > 8 && email.length > 5 && name.isNotEmpty);
 
   User_model copyWith({
     String? id_user,

@@ -53,7 +53,7 @@ class Todo_model {
     required this.description,
     required this.dateTime_create,
     required this.priority_task,
-  });
+  }):assert(name.isNotEmpty & dateTime_create.isNotEmpty);
 
   Todo_model copyWith({
     String? id_todo,

@@ -24,7 +24,7 @@ void main() {
         () async {
           final bool tHanasConnectionFuture = true;
 
-          final bool result = networkInfo.isConnect;
+          final bool result = (await networkInfo.connectionChecker.checkConnectivity()).isUndefinedOrNull;
           verify(() =>
               mockDataConnectionChecker.isDefinedAndNotNull); //.called(true);
           expect(result, tHanasConnectionFuture);
