@@ -15,7 +15,8 @@ import '../UI/widget/bottom_sheets/alert/alert_sheet.dart';
 import '../UI/widget/bottom_sheets/notice/notice_sheet.dart';
 import '../UI/widget/dialogs/error/error_dialog.dart';
 import '../UI/widget/dialogs/info_alert/info_alert_dialog.dart';
-import '../UI/screen/todo_list/todo_viewmodel.dart';
+import '../UI/screen/todo_list/todo_page.dart';
+import '../data/repository/repository_simple.dart';
 
 // import 'package:tod_list_managmant/app/UI/bottom_sheets/alert/alert_sheet.dart';
 
@@ -43,7 +44,7 @@ import '../UI/screen/todo_list/todo_viewmodel.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // LazySingleton(classType: StripeService),
+    LazySingleton(classType: RepositorySimple),
 // @stacked-service
   ],
   bottomsheets: [

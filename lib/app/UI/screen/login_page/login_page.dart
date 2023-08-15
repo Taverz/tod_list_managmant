@@ -36,7 +36,7 @@ class LoginPageView extends StackedView<LoginViewModel> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _title(),
-              _content(),
+              _content(viewModel),
             ],
           ),
         ),
@@ -59,11 +59,11 @@ class LoginPageView extends StackedView<LoginViewModel> {
     );
   }
 
-  Widget _content() {
+  Widget _content(LoginViewModel viewModel) {
     final TextEditingController _controllerLogin = TextEditingController();
     final TextEditingController _controllerPassword = TextEditingController();
     return ViewModelBuilder<LoginViewModel>.reactive(
-        viewModelBuilder: () => LoginViewModel(),
+        viewModelBuilder: () => viewModel,
         builder: (context, model, childWidget) {
           return Container(
             constraints: const BoxConstraints(
@@ -108,6 +108,7 @@ class LoginPageView extends StackedView<LoginViewModel> {
                             null) if (!_fromKey.currentState!.validate()) {
                           return;
                         }
+
                         await model.loginConfirm(
                           password: _controllerPassword.text,
                           login: _controllerLogin.text,
@@ -127,7 +128,9 @@ class LoginPageView extends StackedView<LoginViewModel> {
   Widget _registration(LoginViewModel model) {
     return InkWell(
       onTap: () {
+        // TapEventNOMany().taoEvent(tapAccess: (){
         model.navigateRegistration();
+        //  });
       },
       child: Container(
         margin: const EdgeInsets.all(15),

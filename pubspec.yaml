@@ -90,10 +90,13 @@ dependencies:
   ### RuStore - Only Android
   flutter_rustore_push: 0.0.4 # - ANDROID 
   ### Firebase - Android / IOS
-  firebase_core: 2.12.0 # - ANDROID / IOS / MACOS / WINDOWS / WEB 
-  firebase_messaging: 14.6.0 # - ANDROID / IOS / MACOS / WEB 
+  firebase_auth_web: ^5.6.2
+  firebase_auth_platform_interface: ^6.16.1
+  firebase_core: ^2.15.0 # - ANDROID / IOS / MACOS / WINDOWS / WEB 
+  firebase_core_platform_interface: ^4.8.0
+  firebase_messaging: ^14.6.0 # - ANDROID / IOS / MACOS / WEB 
   ## Authorization
-  firebase_auth: 4.7.2 # - ANDROID / IOS / MACOS / WEB 
+  firebase_auth: ^4.7.2 # - ANDROID / IOS / MACOS / WEB 
   ### Firebase
 
 
@@ -105,7 +108,7 @@ dependencies:
 
   ## Deeplink / Dynamic link
   ### Firebase
-  firebase_dynamic_links: 5.3.0 # - Android / IOS
+  # firebase_dynamic_links: 5.3.0 # - Android / IOS
 
 
 
@@ -173,7 +176,7 @@ dependencies:
   ### Wraps platform-specific persistent storage for simple data
   # encrypted_shared_preferences: ^3.0.1  # - ANDROID / IOS / MACOS / WINDOWS / LINUX / WEB 
   ### ORM SQL database
-  drift: 2.5.0   # - ANDROID / IOS / MACOS / WINDOWS / LINUX / WEB 
+  drift: ^2.10.0   # - ANDROID / IOS / MACOS / WINDOWS / LINUX / WEB 
   ### SQL
   sqlite3_flutter_libs: 0.5.13   # - ANDROID / IOS / MACOS / WINDOWS / LINUX 
   # collection: 1.17.0  # - ANDROID / IOS / MACOS / WINDOWS / LINUX / WEB 
@@ -229,15 +232,17 @@ dev_dependencies:
   # injectable_generator: 2.1.5
 
   # mockito: ^5.4.0
-  drift_dev: 2.5.2
+  # drift_dev: ^2.5.2
+  drift_dev: ^2.10.0
   freezed: 2.3.2
   # golden_toolkit: ^0.15.0
   # meta: ^1.8.0
   mocktail: 0.3.0
   # mason: ^0.1.0-dev.47
 
-  build_runner: 2.4.5
-  stacked_generator: 1.3.3
+  # build_runner: 2.4.5
+  build_runner: ^2.4.6
+  stacked_generator: ^1.3.3
 
   ##
   # bdd_widget_test: ^1.6.0

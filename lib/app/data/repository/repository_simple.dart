@@ -5,7 +5,8 @@ import 'package:tod_list_managmant/app/data/local_sql/dao/daouser.dart';
 import '../local_sql/dao/dao_company.dart';
 import '../local_sql/dao/dao_todo.dart';
 import '../local_sql/driftdatabase.dart';
-import '../use_case/user_usecase.dart';
+import '../model/company_model.dart';
+import '../model/user_model.dart';
 
 class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   final CompanyDao _daoCompany;
@@ -20,8 +21,13 @@ class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   }
 
   @override
-  Future<bool> addCompany(company) async {
-    return await _daoCompany.insertNewCompany(company) == 1 ? true : false;
+  Future<bool> addCompany(Company_model company) async {
+    String ranomNumer = "0";
+    for(int i = 0; i<9;i++){
+      final random = Random().nextInt(10);
+      ranomNumer += random.toString();
+    }
+    return await _daoCompany.insertNewCompany(Companyobj(id: int.parse(ranomNumer), id_company: company.id_company, name: company.name)) == 1 ? true : false;
   }
 
   @override
@@ -30,7 +36,7 @@ class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   }
 
   @override
-  Future addUserData(User_usecase user) async {
+  Future addUserData(User_model user) async {
     final random = Random().nextInt(1000000);
     return await _daoUser.insertNewUser(UserObj(
               id: random,
@@ -51,8 +57,8 @@ class RepositorySimple implements CompanyRepo, TodoRepo, UserRepo {
   }
 
   @override
-  Future<bool> deleteCompany(company) async {
-    return await _daoCompany.deleteCompany(company) == 0 ? false : true;
+  Future<bool> deleteCompany(Companyobj company) async {
+    return await _daoCompany.deleteCompany(Companyobj(id: company.id, id_company: company.id_company, name: company.name)) == 0 ? false : true;
   }
 
   @override
@@ -101,11 +107,11 @@ abstract class CompanyRepo {
     throw UnimplementedError();
   }
 
-  Future<bool> addCompany(dynamic company) async {
+  Future<bool> addCompany(Company_model company) async {
     throw UnimplementedError();
   }
 
-  Future<bool> deleteCompany(dynamic company) async {
+  Future<bool> deleteCompany(Companyobj company) async {
     throw UnimplementedError();
   }
 }
@@ -133,7 +139,7 @@ abstract class UserRepo {
     throw UnimplementedError();
   }
 
-  Future addUserData(User_usecase user) async {
+  Future addUserData(User_model user) async {
     throw UnimplementedError();
   }
 

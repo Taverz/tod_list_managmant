@@ -6,10 +6,13 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:tod_list_managmant/app/core/app.locator.dart';
 import 'package:tod_list_managmant/app/core/app.router.dart';
 import 'package:tod_list_managmant/app/data/repository/repository_simple.dart';
-import 'package:tod_list_managmant/app/data/use_case/user_usecase.dart';
+import 'package:tod_list_managmant/app/data/model/user_model.dart';
 
+import '../../../../main.dart';
 import '../../../core/app.dialogs.dart';
-import '../../../service/huawei_auth.dart';
+import '../../../service/auth/authorization.dart';
+import '../../../service/auth/firebase_goog_auth.dart';
+import '../../../service/auth/huawei_auth.dart';
 
 /// Сотсояние UI при решистрации, что отображать в обределенный момент
 enum StateRegistration {
@@ -40,7 +43,7 @@ class ModelRegistration {
   ModelRegistration();
 
   bool requestCodeSuccess = false;
-
+  RegitrationW? auth;
   String? codeConfirm;
   String? name;
   String? password;
@@ -58,6 +61,17 @@ class RegistrationViewModel extends BaseViewModel {
 
   bool get requestCodeSuccess => _modelRegistration.requestCodeSuccess;
   StateRegistration get statePage => _modelRegistration.statePage;
+
+
+  initRegistration(){
+    if (typeServiceAuth == TypeServiceAuth.firebase) {
+      _modelRegistration.auth = FirebaseWRegistration();
+    } else if (typeServiceAuth == TypeServiceAuth.huawei) {
+      _modelRegistration.auth = HuaweiWRegistration();
+    } else if (typeServiceAuth == TypeServiceAuth.api) {
+      //TODO:  
+    }
+  }
 
   Future<void> registrationRequestCode({required String email}) async {
     _loading();
@@ -103,7 +117,7 @@ class RegistrationViewModel extends BaseViewModel {
   }
 
   Future<bool> _saveUser() async {
-    _repositoryService.addUserData(User_usecase(
+    _repositoryService.addUserData(User_model(
       id_user: Random().nextInt(1000000).toString(),
       login: _modelRegistration.email!,
       password: _modelRegistration.password!,

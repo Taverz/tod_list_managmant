@@ -22,14 +22,14 @@ class SplashPreloaderPageView extends StackedView<SplashScreenViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-        child: _content(),
+        child: _content(viewModel),
       ),
     );
   }
 
-  Widget _content() {
+  Widget _content(SplashScreenViewModel viewModel) {
     return ViewModelBuilder<SplashScreenViewModel>.reactive(
-      viewModelBuilder: () => SplashScreenViewModel(),
+      viewModelBuilder: () => viewModel,
       builder: (context, mode, childWidget) {
         mode.preload();
         return Container(

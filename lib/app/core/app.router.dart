@@ -21,7 +21,7 @@ import 'package:tod_list_managmant/app/UI/screen/splash_preloader_page/splash_pr
     as _i4;
 import 'package:tod_list_managmant/app/UI/screen/todo_description/todo_description_page.dart'
     as _i9;
-import 'package:tod_list_managmant/app/UI/screen/todo_list/todo_viewmodel.dart'
+import 'package:tod_list_managmant/app/UI/screen/todo_list/todo_page.dart'
     as _i8;
 
 class Routes {

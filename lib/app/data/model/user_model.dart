@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-class User_usecase {
+class User_model {
   /// Random id
   String id_user;
   List<String>? list_company;
@@ -11,7 +11,7 @@ class User_usecase {
   String password;
   String name;
   String email;
-  User_usecase({
+  User_model({
     required this.id_user,
     this.list_company,
     required this.login,
@@ -20,7 +20,7 @@ class User_usecase {
     required this.email,
   });
 
-  User_usecase copyWith({
+  User_model copyWith({
     String? id_user,
     List<String>? list_company,
     String? login,
@@ -28,7 +28,7 @@ class User_usecase {
     String? name,
     String? email,
   }) {
-    return User_usecase(
+    return User_model(
       id_user: id_user ?? this.id_user,
       list_company: list_company ?? this.list_company,
       login: login ?? this.login,
@@ -49,8 +49,8 @@ class User_usecase {
     };
   }
 
-  factory User_usecase.fromMap(Map<String, dynamic> map) {
-    return User_usecase(
+  factory User_model.fromMap(Map<String, dynamic> map) {
+    return User_model(
       id_user: map['id_user'] as String,
       list_company: map['list_company'] != null
           ? List<String>.from((map['list_company'] as List<String>))
@@ -64,16 +64,16 @@ class User_usecase {
 
   String toJson() => json.encode(toMap());
 
-  factory User_usecase.fromJson(String source) =>
-      User_usecase.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User_model.fromJson(String source) =>
+      User_model.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'User_usecase(id_user: $id_user, list_company: $list_company, login: $login, password: $password, name: $name, email: $email)';
+    return 'User_model(id_user: $id_user, list_company: $list_company, login: $login, password: $password, name: $name, email: $email)';
   }
 
   @override
-  bool operator ==(covariant User_usecase other) {
+  bool operator ==(covariant User_model other) {
     if (identical(this, other)) return true;
 
     return other.id_user == id_user &&

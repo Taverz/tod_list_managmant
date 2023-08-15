@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -8,7 +9,14 @@ import 'package:tod_list_managmant/app/core/app.locator.dart';
 import 'app/core/app.bottomsheets.dart';
 import 'app/core/app.dialogs.dart';
 import 'app/core/app.router.dart';
+import 'app/service/auth/authorization.dart';
+import 'app/service/auth/firebase_goog_auth.dart';
+import 'app/service/auth/huawei_auth.dart';
 
+FirebaseInit? firebaseInit;
+HuaweiInit? huaweiInit;
+
+TypeServiceAuth typeServiceAuth = TypeServiceAuth.firebase;
 
 void main() async {
   await _initializeApp();
@@ -35,11 +43,33 @@ Future<void> _initializeApp() async {
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
+  await authentication();
 
   // await Future.wait([
   //   EasyLocalization.ensureInitialized(),
   // ]);
   binding.allowFirstFrame();
+}
+
+Future authentication() async {
+  if (Platform.isAndroid || Platform.isIOS) {
+    try {
+      firebaseInit = FirebaseInit();
+      await firebaseInit!.initFireb();
+      typeServiceAuth = TypeServiceAuth.firebase;
+    } catch (e) {
+      huaweiInit = HuaweiInit();
+      typeServiceAuth = TypeServiceAuth.huawei;
+    }
+  } else {
+    try {
+      huaweiInit = HuaweiInit();
+      typeServiceAuth = TypeServiceAuth.huawei;
+    } catch (e) {
+      //TODO: mock
+      typeServiceAuth = TypeServiceAuth.api;
+    }
+  }
 }
 
 /// Crash analitics
@@ -78,45 +108,106 @@ Future<void> _sentry(Widget childW) async {
 
 /// @pragma('vm:entry-point') - from background worked push
 @pragma('vm:entry-point')
-Future<void> _initPushService() async{
+Future<void> _initPushService() async {
   if (Platform.isAndroid) {
+    //  bool permRes =await Permission.notification.isDenied;
+    // if(permRes)
+    // await Permission.notification.request();
     /// В случае если это Android  без GMS, или какой-нибудь другой Huawei, то выкенет ошибку и запустит другой сервис пушей
     try {
-      //TODO: google push
+      //  await FirebaseMessaging.instance.requestPermission();
+      // try {
+      //   tokenn = await FirebaseMessaging.instance.getToken();
+       // } catch (e) {
+      // return;
+      // }
+      // try {
+        // FirebaseMessaging.onBackgroundMessage((RemoteMessage message)=>_newPushMessageBack(message.data));
+       // } catch (e) {
+      // return;
+      // }
     } catch (e) {
-      //TODO: huawei push
+      // HuaweiPush huaweiPush = HuaweiPush();
+      // huaweiPush.initPushHuawei();
     }
   } else if (Platform.isIOS) {
     try {
-      //TODO: google push
+      //  await FirebaseMessaging.instance.requestPermission();
+      // try {
+      //   tokenn = await FirebaseMessaging.instance.getToken();
+      // } catch (e) {
+      // return;
+      // }
+      // try {
+        // FirebaseMessaging.onBackgroundMessage((RemoteMessage message)=>_newPushMessageBack(message.data));
+      // } catch (e) {
+      // return;
+      // }
     } catch (e) {}
   }
 }
 
+@pragma('vm:entry-point')
+_newPushMessageBack(Map<String, dynamic> message) {
+
+  String msgOSType = "";
+  if (message.containsKey('data')) {
+    // Handle data message
+    msgOSType = 'data';
+  } else {
+    msgOSType = 'notification';
+  }
+
+  String? msgType = msgOSType == 'notification'
+      ? message['type']
+      : message[msgOSType]['type'];
+
+  String unikey = msgOSType == 'notification'
+      ? message['unikey'] ?? ""
+      : message[msgOSType]['unikey'] ?? "";
 
 
+  switch (msgType) {
+    case "send_auth_notify":
+      {
+        if (msgOSType == 'notification') {
+          String tokAuth = msgOSType == 'notification'
+              ? message['token']
+              : message[msgOSType]['token'];
+          String newUser = msgOSType == 'notification'
+              ? message['isNew']
+              : message[msgOSType]['isNew'];
+          // _setTokenAuthPush(tokAuth, newUser);
+        } else {
+          String tokAuth = msgOSType == 'notification'
+              ? message['token']
+              : message[msgOSType]['token'];
+          String newUser = msgOSType == 'notification'
+              ? message['isNew']
+              : message[msgOSType]['isNew'];
+          // _setTokenAuthPush(tokAuth, newUser);
+        }
+      }
+      break;
+    case "success_notify":
+      {
+      }
+      break;
+    default:
+      {
+      }
+      break;
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsApp(
-      debugShowCheckedModeBanner: false,
-      color: Colors.deepPurple,
-      initialRoute: Routes.splashPreloaderPageView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ], 
-    );
-    // return MaterialApp(
+    // return WidgetsApp(
     //   debugShowCheckedModeBanner: false,
-    //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
+    //   color: Colors.deepPurple,
     //   initialRoute: Routes.splashPreloaderPageView,
     //   onGenerateRoute: StackedRouter().onGenerateRoute,
     //   navigatorKey: StackedService.navigatorKey,
@@ -124,9 +215,18 @@ class MyApp extends StatelessWidget {
     //     StackedService.routeObserver,
     //   ],
     // );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      initialRoute: Routes.splashPreloaderPageView,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      navigatorObservers: [
+        StackedService.routeObserver,
+      ],
+    );
   }
 }
-
-//TODO: logging the state of the page, after routing, 
-//  whether the state changes or whether the page remains active
-//TODO: application design details

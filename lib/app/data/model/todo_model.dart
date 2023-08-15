@@ -32,7 +32,7 @@ extension PriorityTodoTaskXX on PriorityTodoTask {
   }
 }
 
-class Todo_usecase {
+class Todo_model {
   String id_todo;
   String id_user_creater;
   String id_user_executor;
@@ -45,7 +45,7 @@ class Todo_usecase {
 
   /// Convert to enum
   PriorityTodoTask priority_task;
-  Todo_usecase({
+  Todo_model({
     required this.id_todo,
     required this.id_user_creater,
     required this.id_user_executor,
@@ -55,7 +55,7 @@ class Todo_usecase {
     required this.priority_task,
   });
 
-  Todo_usecase copyWith({
+  Todo_model copyWith({
     String? id_todo,
     String? id_user_creater,
     String? id_user_executor,
@@ -64,7 +64,7 @@ class Todo_usecase {
     String? dateTime_create,
     PriorityTodoTask? priority_task,
   }) {
-    return Todo_usecase(
+    return Todo_model(
       id_todo: id_todo ?? this.id_todo,
       id_user_creater: id_user_creater ?? this.id_user_creater,
       id_user_executor: id_user_executor ?? this.id_user_executor,
@@ -87,8 +87,8 @@ class Todo_usecase {
     };
   }
 
-  factory Todo_usecase.fromMap(Map<String, dynamic> map) {
-    return Todo_usecase(
+  factory Todo_model.fromMap(Map<String, dynamic> map) {
+    return Todo_model(
       id_todo: map['id_todo'] as String,
       id_user_creater: map['id_user_creater'] as String,
       id_user_executor: map['id_user_executor'] as String,
@@ -102,16 +102,16 @@ class Todo_usecase {
 
   String toJson() => json.encode(toMap());
 
-  factory Todo_usecase.fromJson(String source) =>
-      Todo_usecase.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Todo_model.fromJson(String source) =>
+      Todo_model.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Todo_usecase(id_todo: $id_todo, id_user_creater: $id_user_creater, id_user_executor: $id_user_executor, name: $name, description: $description, dateTime_create: $dateTime_create, priority_task: $priority_task)';
+    return 'Todo_model(id_todo: $id_todo, id_user_creater: $id_user_creater, id_user_executor: $id_user_executor, name: $name, description: $description, dateTime_create: $dateTime_create, priority_task: $priority_task)';
   }
 
   @override
-  bool operator ==(covariant Todo_usecase other) {
+  bool operator ==(covariant Todo_model other) {
     if (identical(this, other)) return true;
 
     return other.id_todo == id_todo &&

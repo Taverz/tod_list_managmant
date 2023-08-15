@@ -12,7 +12,7 @@ import '../UI/widget/bottom_sheets/notice/notice_sheet.dart';
 
 enum BottomSheetType {
   notice,
-  alert,
+  alert
 }
 
 void setupBottomSheetUi() {

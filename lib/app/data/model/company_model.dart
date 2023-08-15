@@ -3,22 +3,22 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-class Company_usecase {
+class Company_model {
   String id_company;
   List<String>? list_user;
   String name;
-  Company_usecase({
+  Company_model({
     required this.id_company,
     this.list_user,
     required this.name,
   });
 
-  Company_usecase copyWith({
+  Company_model copyWith({
     String? id_company,
     List<String>? list_user,
     String? name,
   }) {
-    return Company_usecase(
+    return Company_model(
       id_company: id_company ?? this.id_company,
       list_user: list_user ?? this.list_user,
       name: name ?? this.name,
@@ -33,8 +33,8 @@ class Company_usecase {
     };
   }
 
-  factory Company_usecase.fromMap(Map<String, dynamic> map) {
-    return Company_usecase(
+  factory Company_model.fromMap(Map<String, dynamic> map) {
+    return Company_model(
       id_company: map['id_company'] as String,
       list_user: map['list_user'] != null
           ? List<String>.from((map['list_user'] as List<String>))
@@ -45,15 +45,15 @@ class Company_usecase {
 
   String toJson() => json.encode(toMap());
 
-  factory Company_usecase.fromJson(String source) =>
-      Company_usecase.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Company_model.fromJson(String source) =>
+      Company_model.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'Company_usecase(id_company: $id_company, list_user: $list_user, name: $name)';
+      'Company_model(id_company: $id_company, list_user: $list_user, name: $name)';
 
   @override
-  bool operator ==(covariant Company_usecase other) {
+  bool operator ==(covariant Company_model other) {
     if (identical(this, other)) return true;
 
     return other.id_company == id_company &&

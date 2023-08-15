@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../common/appconstant.dart';
+import '../../widget/bug_many_tap.dart';
 import 'registration_viewmodel.dart';
 
 class RegistrationPageView extends StackedView<RegistrationViewModel> {
@@ -43,7 +44,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _title(),
-              _content(),
+              _content(viewModel),
             ],
           ),
         ),
@@ -64,9 +65,9 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
     );
   }
 
-  Widget _content() {
+  Widget _content(RegistrationViewModel viewModel) {
     return ViewModelBuilder<RegistrationViewModel>.reactive(
-        viewModelBuilder: () => RegistrationViewModel(),
+        viewModelBuilder: () => viewModel,
         builder: (context, RegistrationViewModel model, childWidget) {
           return Container(
             constraints: const BoxConstraints(
@@ -120,6 +121,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
           child: _buttonConfirm(
             titleButton: appwordsRequestCode,
             onTap: () async {
+               // TapEventNOMany().taoEvent(tapAccess: (){ 
               if (_fromKey.currentState != null) if (!_fromKey.currentState!
                   .validate()) {
                 return;
@@ -127,6 +129,7 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
               await model.registrationRequestCode(
                 email: _controllerLogin.text,
               );
+              // });
             },
           ),
         ),
@@ -137,7 +140,9 @@ class RegistrationPageView extends StackedView<RegistrationViewModel> {
   Widget _loginPage(RegistrationViewModel model) {
     return InkWell(
       onTap: () {
-        model.navigateLogin();
+        // TapEventNOMany().taoEvent(tapAccess: (){ 
+          model.navigateLogin();
+        // });
       },
       child: Container(
         margin: const EdgeInsets.all(15),
